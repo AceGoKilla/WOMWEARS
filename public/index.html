@@ -1,58 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Product Catalog</title>
-    </head>
-    <body>
-        <h1>Product Catalog</h1>
-        <ul>
-        
-            <li>
-                <img src="https://m.media-amazon.com/images/I/81ysWilx5cL._AC_SX569_.jpg" alt="Furnex Women's Casual Ruffle Sleeve Tops V Neck Knit Shirts 2025 Spring Trendy Blouses" width="200">
-                <p>Furnex Women's Casual Ruffle Sleeve Tops V Neck Knit Shirts 2025 Spring Trendy Blouses</p>
-                <a href="https://amzn.to/44vE7Aw">Buy Now</a>
-            </li>
-        
-            <li>
-                <img src="https://m.media-amazon.com/images/I/81f-h+xv+LL._AC_SX569_.jpg" alt="Lotusmile Womens 3/4 Sleeve Tops Dressy Business Casual Outfits V Neck Chiffon Work Blouses" width="200">
-                <p>Lotusmile Womens 3/4 Sleeve Tops Dressy Business Casual Outfits V Neck Chiffon Work Blouses</p>
-                <a href="https://amzn.to/4jHgnOh">Buy Now</a>
-            </li>
-        
-            <li>
-                <img src="https://m.media-amazon.com/images/I/91i1TWOx4AL._AC_SX569_.jpg" alt="Bebonnie Women's Ruffle 3/4 Sleeve Elegant Dressy Blouses Crew Neck Double Layers Mesh Tunic Tops" width="200">
-                <p>Bebonnie Women's Ruffle 3/4 Sleeve Elegant Dressy Blouses Crew Neck Double Layers Mesh Tunic Tops</p>
-                <a href="https://amzn.to/3EC4pXa">Buy Now</a>
-            </li>
-        
-            <li>
-                <img src="https://m.media-amazon.com/images/I/714r0ktZIBL._AC_SY741_.jpg" alt="Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops" width="200">
-                <p>Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops</p>
-                <a href="Bebonnie Women's Ruffle 3/4 Sleeve Elegant Dressy Blouses Crew Neck Double Layers Mesh Tunic Tops">Buy Now</a>
-            </li>
-        
-            <li>
-                <img src="https://m.media-amazon.com/images/I/714r0ktZIBL._AC_SY741_.jpg" alt="Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops" width="200">
-                <p>Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops</p>
-                <a href="https://amzn.to/442fefB">Buy Now</a>
-            </li>
-        
-            <li>
-                <img src="https://m.media-amazon.com/images/I/71SQznjy1sS._AC_SX569_.jpg" alt="VALOLIA Womens Tops 3/4 Sleeve Shirts V Neck Blouses Dressy Casual Tunic Tops M-XXL" width="200">
-                <p>VALOLIA Womens Tops 3/4 Sleeve Shirts V Neck Blouses Dressy Casual Tunic Tops M-XXL</p>
-                <a href="https://amzn.to/4jBxlNS">Buy Now</a>
-            </li>
-        
-            <li>
-                <img src="https://m.media-amazon.com/images/I/71SQznjy1sS._AC_SX569_.jpg" alt="VALOLIA Womens Tops 3/4 Sleeve Shirts V Neck Blouses Dressy Casual Tunic Tops M-XXL" width="200">
-                <p>VALOLIA Womens Tops 3/4 Sleeve Shirts V Neck Blouses Dressy Casual Tunic Tops M-XXL</p>
-                <a href="https://amzn.to/4jBxlNS">Buy Now</a>
-            </li>
-        
-        </ul>
-    </body>
-    </html>
-    
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .search-box {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .search-box input {
+            padding: 10px;
+            width: 80%;
+            max-width: 500px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            width: 30%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+            text-align: center;
+        }
+
+        li:hover {
+            transform: translateY(-10px);
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        a {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Product Catalog</h1>
+</header>
+
+<div class="container">
+    <div class="search-box">
+        <input type="text" id="search-input" placeholder="Search for products...">
+    </div>
+
+    <ul id="product-list">
+        <!-- Items will be populated dynamically by JavaScript -->
+        <li>
+            <img src="https://m.media-amazon.com/images/I/81ysWilx5cL._AC_SX569_.jpg" alt="Furnex Women's Casual Ruffle Sleeve Tops V Neck Knit Shirts 2025 Spring Trendy Blouses" width="200">
+            <p>Furnex Women's Casual Ruffle Sleeve Tops V Neck Knit Shirts 2025 Spring Trendy Blouses</p>
+            <a href="https://amzn.to/44vE7Aw">Buy Now</a>
+        </li>
+        <li>
+            <img src="https://m.media-amazon.com/images/I/81f-h+xv+LL._AC_SX569_.jpg" alt="Lotusmile Womens 3/4 Sleeve Tops Dressy Business Casual Outfits V Neck Chiffon Work Blouses" width="200">
+            <p>Lotusmile Womens 3/4 Sleeve Tops Dressy Business Casual Outfits V Neck Chiffon Work Blouses</p>
+            <a href="https://amzn.to/4jHgnOh">Buy Now</a>
+        </li>
+        <li>
+            <img src="https://m.media-amazon.com/images/I/91i1TWOx4AL._AC_SX569_.jpg" alt="Bebonnie Women's Ruffle 3/4 Sleeve Elegant Dressy Blouses Crew Neck Double Layers Mesh Tunic Tops" width="200">
+            <p>Bebonnie Women's Ruffle 3/4 Sleeve Elegant Dressy Blouses Crew Neck Double Layers Mesh Tunic Tops</p>
+            <a href="https://amzn.to/3EC4pXa">Buy Now</a>
+        </li>
+        <li>
+            <img src="https://m.media-amazon.com/images/I/714r0ktZIBL._AC_SY741_.jpg" alt="Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops" width="200">
+            <p>Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops</p>
+            <a href="https://amzn.to/4jX0fZd">Buy Now</a>
+        </li>
+        <li>
+            <img src="https://m.media-amazon.com/images/I/714r0ktZIBL._AC_SY741_.jpg" alt="Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops" width="200">
+            <p>Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops</p>
+            <a href="https://amzn.to/442fefB">Buy Now</a>
+        </li>
+        <li>
+            <img src="https://m.media-amazon.com/images/I/71SQznjy1sS._AC_SX569_.jpg" alt="VALOLIA Womens Tops 3/4 Sleeve Shirts V Neck Blouses Dressy Casual Tunic Tops M-XXL" width="200">
+            <p>VALOLIA Womens Tops 3/4 Sleeve Shirts V Neck Blouses Dressy Casual Tunic Tops M-XXL</p>
+            <a href="https://amzn.to/4jBxlNS">Buy Now</a>
+        </li>
+    </ul>
+</div>
+
+<footer>
+    <p>&copy; 2025 Product Catalog. All rights reserved.</p>
+</footer>
+
+<script>
+    const products = [
+        {
+            title: "Furnex Women's Casual Ruffle Sleeve Tops V Neck Knit Shirts 2025 Spring Trendy Blouses",
+            image: "https://m.media-amazon.com/images/I/81ysWilx5cL._AC_SX569_.jpg",
+            link: "https://amzn.to/44vE7Aw"
+        },
+        {
+            title: "Lotusmile Womens 3/4 Sleeve Tops Dressy Business Casual Outfits V Neck Chiffon Work Blouses",
+            image: "https://m.media-amazon.com/images/I/81f-h+xv+LL._AC_SX569_.jpg",
+            link: "https://amzn.to/4jHgnOh"
+        },
+        {
+            title: "Bebonnie Women's Ruffle 3/4 Sleeve Elegant Dressy Blouses Crew Neck Double Layers Mesh Tunic Tops",
+            image: "https://m.media-amazon.com/images/I/91i1TWOx4AL._AC_SX569_.jpg",
+            link: "https://amzn.to/3EC4pXa"
+        },
+        {
+            title: "Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops",
+            image: "https://m.media-amazon.com/images/I/714r0ktZIBL._AC_SY741_.jpg",
+            link: "https://amzn.to/4jX0fZd"
+        },
+        {
+            title: "Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops",
+            image: "https://m.media-amazon.com/images/I/714r0ktZIBL._AC_SY741_.jpg",
+            link: "https://amzn.to/442fefB"
+        },
+        {
+            title: "VALOLIA Womens Tops 3/4 Sleeve Shirts V Neck Blouses Dressy Casual Tunic Tops M-XXL",
+            image: "https://m.media-amazon.com/images/I/71SQznjy1sS._AC_SX569_.jpg",
+            link: "https://amzn.to/4jBxlNS"
+        }
+    ];
+
+    const productList = document.getElementById("product-list");
+
+    function displayProducts(products) {
+        productList.innerHTML = '';
+        products.forEach(product => {
+            const productCard = document.createElement("li");
+            productCard.innerHTML = `
+                <img src="${product.image}" alt="${product.title}" width="200">
+                <p>${product.title}</p>
+                <a href="${product.link}">Buy Now</a>
+            `;
+            productList.appendChild(productCard);
+        });
+    }
+
+    function filterProducts(query) {
+        const filteredProducts = products.filter(product => 
+            product.title.toLowerCase().includes(query.toLowerCase())
+        );
+        displayProducts(filteredProducts);
+    }
+
+    document.getElementById("search-input").addEventListener("input", (e) => {
+        filterProducts(e.target.value);
+    });
+
+    displayProducts(products);
+</script>
+
+</body>
+</html>
