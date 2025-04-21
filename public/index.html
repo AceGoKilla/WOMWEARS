@@ -1,71 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WOMWEARS — Fashion Catalog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fffafc;
+      color: #333;
+    }
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Product Catalog</title>
-    </head>
-    <body>
-        <h1>Product Catalog</h1>
-        <ul>
-        
-            <li>
-                <img src="https://m.media-amazon.com/images/I/71nSZpmXtoL._AC_SY741_.jpg" alt="ANRABESS Women's Summer Casual Sleeveless Square Neck Dress 2025 Smocked Ruffle Backless Boho Beach Cute Teen Short Sundress" width="200">
-                <p>ANRABESS Women's Summer Casual Sleeveless Square Neck Dress 2025 Smocked Ruffle Backless Boho Beach Cute Teen Short Sundress</p>
-                <a href="https://amzn.to/4jFzTdT">Buy Now</a>
-            </li>
-        
-            <li>
-                <img src="https://m.media-amazon.com/images/I/81ysWilx5cL._AC_SX569_.jpg" alt="Furnex Women's Casual Ruffle Sleeve Tops V Neck Knit Shirts 2025 Spring Trendy Blouses" width="200">
-                <p>Furnex Women's Casual Ruffle Sleeve Tops V Neck Knit Shirts 2025 Spring Trendy Blouses</p>
-                <a href="https://amzn.to/44vE7Aw">Buy Now</a>
-            </li>
-        
-            <li>
-                <img src="https://m.media-amazon.com/images/I/81f-h+xv+LL._AC_SX569_.jpg" alt="Lotusmile Womens 3/4 Sleeve Tops Dressy Business Casual Outfits V Neck Chiffon Work Blouses" width="200">
-                <p>Lotusmile Womens 3/4 Sleeve Tops Dressy Business Casual Outfits V Neck Chiffon Work Blouses</p>
-                <a href="https://amzn.to/4jHgnOh">Buy Now</a>
-            </li>
-        
-            <li>
-                <img src="https://m.media-amazon.com/images/I/91i1TWOx4AL._AC_SX569_.jpg" alt="Bebonnie Women's Ruffle 3/4 Sleeve Elegant Dressy Blouses Crew Neck Double Layers Mesh Tunic Tops" width="200">
-                <p>Bebonnie Women's Ruffle 3/4 Sleeve Elegant Dressy Blouses Crew Neck Double Layers Mesh Tunic Tops</p>
-                <a href="https://amzn.to/3EC4pXa">Buy Now</a>
-            </li>
-        
-            <li>
-                <img src="https://m.media-amazon.com/images/I/714r0ktZIBL._AC_SY741_.jpg" alt="Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops" width="200">
-                <p>Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops</p>
-                <a href="Bebonnie Women's Ruffle 3/4 Sleeve Elegant Dressy Blouses Crew Neck Double Layers Mesh Tunic Tops">Buy Now</a>
-            </li>
-        
-            <li>
-                <img src="https://m.media-amazon.com/images/I/714r0ktZIBL._AC_SY741_.jpg" alt="Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops" width="200">
-                <p>Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops</p>
-                <a href="https://amzn.to/442fefB">Buy Now</a>
-            </li>
-        
-            <li>
-                <img src="https://m.media-amazon.com/images/I/71SQznjy1sS._AC_SX569_.jpg" alt="VALOLIA Womens Tops 3/4 Sleeve Shirts V Neck Blouses Dressy Casual Tunic Tops M-XXL" width="200">
-                <p>VALOLIA Womens Tops 3/4 Sleeve Shirts V Neck Blouses Dressy Casual Tunic Tops M-XXL</p>
-                <a href="https://amzn.to/4jBxlNS">Buy Now</a>
-            </li>
-        
-            <li>
-                <img src="https://m.media-amazon.com/images/I/71SQznjy1sS._AC_SX569_.jpg" alt="VALOLIA Womens Tops 3/4 Sleeve Shirts V Neck Blouses Dressy Casual Tunic Tops M-XXL" width="200">
-                <p>VALOLIA Womens Tops 3/4 Sleeve Shirts V Neck Blouses Dressy Casual Tunic Tops M-XXL</p>
-                <a href="https://amzn.to/4jBxlNS">Buy Now</a>
-            </li>
-        
-            <li>
-                <img src="https://m.media-amazon.com/images/I/61+eyHq-sHL._AC_SY741_.jpg
-https://m.media-amazon.com/images/I/615ddFkosDL._AC_SY741_.jpg" alt="ETCYY Summer Dresses for Women 2025 Trendy Boho Floral Print Beach Cover Up Casual Spring Sleeveless Sundresses" width="200">
-                <p>ETCYY Summer Dresses for Women 2025 Trendy Boho Floral Print Beach Cover Up Casual Spring Sleeveless Sundresses</p>
-                <a href="https://amzn.to/3YBerhZ">Buy Now</a>
-            </li>
-        
-        </ul>
-    </body>
-    </html>
-    
+    header {
+      text-align: center;
+      padding: 30px 20px;
+      background: #fff0f5;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5em;
+      margin: 0;
+      color: #d63384;
+    }
+
+    ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      margin: 0;
+      list-style: none;
+    }
+
+    li {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    li:hover {
+      transform: scale(1.03);
+    }
+
+    img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+    }
+
+    p {
+      padding: 10px 15px;
+      font-size: 0.95em;
+      line-height: 1.4;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      background: #d63384;
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      font-weight: 600;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      transition: background 0.3s ease;
+    }
+
+    a:hover {
+      background: #ad296b;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2em;
+      }
+
+      img {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>WOMWEARS Catalog</h1>
+  </header>
+  <ul>
+    <li>
+      <img src="https://m.media-amazon.com/images/I/71nSZpmXtoL._AC_SY741_.jpg" alt="ANRABESS Women's Summer Casual Sleeveless Square Neck Dress 2025 Smocked Ruffle Backless Boho Beach Cute Teen Short Sundress">
+      <p>ANRABESS Women's Summer Casual Sleeveless Square Neck Dress 2025 Smocked Ruffle Backless Boho Beach Cute Teen Short Sundress</p>
+      <a href="https://amzn.to/4jFzTdT">Buy Now</a>
+    </li>
+    <li>
+      <img src="https://m.media-amazon.com/images/I/81ysWilx5cL._AC_SX569_.jpg" alt="Furnex Women's Casual Ruffle Sleeve Tops V Neck Knit Shirts 2025 Spring Trendy Blouses">
+      <p>Furnex Women's Casual Ruffle Sleeve Tops V Neck Knit Shirts 2025 Spring Trendy Blouses</p>
+      <a href="https://amzn.to/44vE7Aw">Buy Now</a>
+    </li>
+    <li>
+      <img src="https://m.media-amazon.com/images/I/81f-h+xv+LL._AC_SX569_.jpg" alt="Lotusmile Womens 3/4 Sleeve Tops Dressy Business Casual Outfits V Neck Chiffon Work Blouses">
+      <p>Lotusmile Womens 3/4 Sleeve Tops Dressy Business Casual Outfits V Neck Chiffon Work Blouses</p>
+      <a href="https://amzn.to/4jHgnOh">Buy Now</a>
+    </li>
+    <li>
+      <img src="https://m.media-amazon.com/images/I/91i1TWOx4AL._AC_SX569_.jpg" alt="Bebonnie Women's Ruffle 3/4 Sleeve Elegant Dressy Blouses Crew Neck Double Layers Mesh Tunic Tops">
+      <p>Bebonnie Women's Ruffle 3/4 Sleeve Elegant Dressy Blouses Crew Neck Double Layers Mesh Tunic Tops</p>
+      <a href="https://amzn.to/3EC4pXa">Buy Now</a>
+    </li>
+    <li>
+      <img src="https://m.media-amazon.com/images/I/714r0ktZIBL._AC_SY741_.jpg" alt="Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops">
+      <p>Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops</p>
+      <a href="https://amzn.to/442fefB">Buy Now</a>
+    </li>
+    <li>
+      <img src="https://m.media-amazon.com/images/I/71SQznjy1sS._AC_SX569_.jpg" alt="VALOLIA Womens Tops 3/4 Sleeve Shirts V Neck Blouses Dressy Casual Tunic Tops M-XXL">
+      <p>VALOLIA Womens Tops 3/4 Sleeve Shirts V Neck Blouses Dressy Casual Tunic Tops M-XXL</p>
+      <a href="https://amzn.to/4jBxlNS">Buy Now</a>
+    </li>
+    <li>
+      <img src="https://m.media-amazon.com/images/I/61+eyHq-sHL._AC_SY741_.jpg" alt="ETCYY Summer Dresses for Women 2025 Trendy Boho Floral Print Beach Cover Up Casual Spring Sleeveless Sundresses">
+      <p>ETCYY Summer Dresses for Women 2025 Trendy Boho Floral Print Beach Cover Up Casual Spring Sleeveless Sundresses</p>
+      <a href="https://amzn.to/3YBerhZ">Buy Now</a>
+    </li>
+  </ul>
+</body>
+</html>
