@@ -6,68 +6,113 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Product Catalog</title>
         <style>
-            img { max-width: 200px; margin: 5px; }
+            body {
+                font-family: Arial, sans-serif;
+                background: #f9f9f9;
+                margin: 0;
+                padding: 20px;
+            }
+            h1 {
+                text-align: center;
+                color: #333;
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+                margin-top: 30px;
+            }
+            .card {
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                padding: 15px;
+                text-align: center;
+            }
+            .card img {
+                max-width: 100%;
+                border-radius: 8px;
+                margin-bottom: 10px;
+            }
+            .card h2 {
+                font-size: 18px;
+                margin: 10px 0;
+                color: #222;
+            }
+            .card a {
+                display: inline-block;
+                margin-top: 10px;
+                padding: 8px 14px;
+                background: #007BFF;
+                color: white;
+                text-decoration: none;
+                border-radius: 8px;
+                font-size: 14px;
+            }
+            .card a:hover {
+                background: #0056b3;
+            }
         </style>
     </head>
     <body>
         <h1>Product Catalog</h1>
-        <ul>
+        <div class="grid">
         
-            <li>
+            <div class="card">
                 
-                <p>ANRABESS Women's Summer Casual Sleeveless Square Neck Dress 2025 Smocked Ruffle Backless Boho Beach Cute Teen Short Sundress</p>
-                <a href="https://amzn.to/4jFzTdT">Buy Now</a>
-            </li>
+                <h2>ANRABESS Women's Summer Casual Sleeveless Square Neck Dress 2025 Smocked Ruffle Backless Boho Beach Cute Teen Short Sundress</h2>
+                <a href="https://amzn.to/4jFzTdT" target="_blank">🔗 Купить</a>
+            </div>
         
-            <li>
+            <div class="card">
                 
-                <p>Furnex Women's Casual Ruffle Sleeve Tops V Neck Knit Shirts 2025 Spring Trendy Blouses</p>
-                <a href="https://amzn.to/44vE7Aw">Buy Now</a>
-            </li>
+                <h2>Furnex Women's Casual Ruffle Sleeve Tops V Neck Knit Shirts 2025 Spring Trendy Blouses</h2>
+                <a href="https://amzn.to/44vE7Aw" target="_blank">🔗 Купить</a>
+            </div>
         
-            <li>
+            <div class="card">
                 
-                <p>Lotusmile Womens 3/4 Sleeve Tops Dressy Business Casual Outfits V Neck Chiffon Work Blouses</p>
-                <a href="https://amzn.to/4jHgnOh">Buy Now</a>
-            </li>
+                <h2>Lotusmile Womens 3/4 Sleeve Tops Dressy Business Casual Outfits V Neck Chiffon Work Blouses</h2>
+                <a href="https://amzn.to/4jHgnOh" target="_blank">🔗 Купить</a>
+            </div>
         
-            <li>
+            <div class="card">
                 
-                <p>Bebonnie Women's Ruffle 3/4 Sleeve Elegant Dressy Blouses Crew Neck Double Layers Mesh Tunic Tops</p>
-                <a href="https://amzn.to/3EC4pXa">Buy Now</a>
-            </li>
+                <h2>Bebonnie Women's Ruffle 3/4 Sleeve Elegant Dressy Blouses Crew Neck Double Layers Mesh Tunic Tops</h2>
+                <a href="https://amzn.to/3EC4pXa" target="_blank">🔗 Купить</a>
+            </div>
         
-            <li>
+            <div class="card">
                 
-                <p>Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops</p>
-                <a href="Bebonnie Women's Ruffle 3/4 Sleeve Elegant Dressy Blouses Crew Neck Double Layers Mesh Tunic Tops">Buy Now</a>
-            </li>
+                <h2>Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops</h2>
+                <a href="Bebonnie Women's Ruffle 3/4 Sleeve Elegant Dressy Blouses Crew Neck Double Layers Mesh Tunic Tops" target="_blank">🔗 Купить</a>
+            </div>
         
-            <li>
+            <div class="card">
                 
-                <p>Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops</p>
-                <a href="https://amzn.to/442fefB">Buy Now</a>
-            </li>
+                <h2>Bulotus Women's 3/4 Sleeve Tunic Shirts Business Casual Blouses V Neck Work Tops</h2>
+                <a href="https://amzn.to/442fefB" target="_blank">🔗 Купить</a>
+            </div>
         
-            <li>
+            <div class="card">
                 
-                <p>VALOLIA Womens Tops 3/4 Sleeve Shirts V Neck Blouses Dressy Casual Tunic Tops M-XXL</p>
-                <a href="https://amzn.to/4jBxlNS">Buy Now</a>
-            </li>
+                <h2>VALOLIA Womens Tops 3/4 Sleeve Shirts V Neck Blouses Dressy Casual Tunic Tops M-XXL</h2>
+                <a href="https://amzn.to/4jBxlNS" target="_blank">🔗 Купить</a>
+            </div>
         
-            <li>
+            <div class="card">
                 
-                <p>VALOLIA Womens Tops 3/4 Sleeve Shirts V Neck Blouses Dressy Casual Tunic Tops M-XXL</p>
-                <a href="https://amzn.to/4jBxlNS">Buy Now</a>
-            </li>
+                <h2>VALOLIA Womens Tops 3/4 Sleeve Shirts V Neck Blouses Dressy Casual Tunic Tops M-XXL</h2>
+                <a href="https://amzn.to/4jBxlNS" target="_blank">🔗 Купить</a>
+            </div>
         
-            <li>
+            <div class="card">
                 
-                <p>ETCYY Summer Dresses for Women 2025 Trendy Boho Floral Print Beach Cover Up Casual Spring Sleeveless Sundresses</p>
-                <a href="https://amzn.to/3YBerhZ">Buy Now</a>
-            </li>
+                <h2>ETCYY Summer Dresses for Women 2025 Trendy Boho Floral Print Beach Cover Up Casual Spring Sleeveless Sundresses</h2>
+                <a href="https://amzn.to/3YBerhZ" target="_blank">🔗 Купить</a>
+            </div>
         
-            <li>
+            <div class="card">
                 
                     <img src="https://m.media-amazon.com/images/I/61-+Zumb32L._AC_SX679_.jpg" alt="Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women's Short Sleeve T Shirt">
                 
@@ -77,11 +122,25 @@
                 
                     <img src="https://m.media-amazon.com/images/I/71IggeiOJgL._AC_SX679_.jpg" alt="Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women's Short Sleeve T Shirt">
                 
-                <p>Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women's Short Sleeve T Shirt</p>
-                <a href="https://amzn.to/3GmQmpe">Buy Now</a>
-            </li>
+                <h2>Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women's Short Sleeve T Shirt</h2>
+                <a href="https://amzn.to/3GmQmpe" target="_blank">🔗 Купить</a>
+            </div>
         
-        </ul>
+            <div class="card">
+                
+                    <img src="https://m.media-amazon.com/images/I/81-5Hc2tHrL._AC_SY741_.jpg" alt="ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings">
+                
+                    <img src="https://m.media-amazon.com/images/I/81TkrfVWswL._AC_SY741_.jpg" alt="ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings">
+                
+                    <img src="https://m.media-amazon.com/images/I/71cmAYf53qL._AC_SY741_.jpg" alt="ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings">
+                
+                    <img src="https://m.media-amazon.com/images/I/81hfDLWl56L._AC_SY741_.jpg" alt="ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings">
+                
+                <h2>ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings</h2>
+                <a href="https://amzn.to/3RYc7hk" target="_blank">🔗 Купить</a>
+            </div>
+        
+        </div>
     </body>
     </html>
     
