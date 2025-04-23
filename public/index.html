@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>WOMWEARS</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"/>
-  <!-- Splide CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/css/splide.min.css">
   <style>
     body {
@@ -26,13 +26,28 @@
       margin: 0;
       color: #d63384;
     }
+    ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      margin: 0;
+      list-style: none;
+    }
+    li {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    li:hover {
+      transform: scale(1.03);
+    }
     .splide__slide img {
-      width: auto;
-      height: auto;
-      max-width: 100%;
-      max-height: 100%;
-      display: block;
-      margin: 0 auto;
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
     }
     p {
       padding: 10px 15px;
@@ -58,6 +73,9 @@
       h1 {
         font-size: 2em;
       }
+      .splide__slide img {
+        height: 250px;
+      }
     }
   </style>
 </head>
@@ -65,48 +83,288 @@
   <header>
     <h1>WOMWEARS</h1>
   </header>
-
-  <div class="splide" aria-label="WOMWEARS Carousel">
-    <div class="splide__track">
-      <ul class="splide__list">
-        <li class="splide__slide">
-          <img src="https://m.media-amazon.com/images/I/61-+Zumb32L._AC_SX679_.jpg" alt="Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women's Short Sleeve T Shirt">
-          <p>Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women's Short Sleeve T Shirt</p>
-          <a href="https://amzn.to/3GmQmpe" target="_blank">Buy on Amazon</a>
-        </li>
-        <li class="splide__slide">
-          <img src="https://m.media-amazon.com/images/I/81-5Hc2tHrL._AC_SY741_.jpg" alt="ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings">
-          <p>ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings</p>
-          <a href="https://amzn.to/3RYc7hk" target="_blank">Buy on Amazon</a>
-        </li>
-        <li class="splide__slide">
-          <img src="https://m.media-amazon.com/images/I/81oT3AT-4IL._AC_SY741_.jpg" alt="ROSELINLIN Womens Long Sleeve Tunic Tops Floral Fall Blouse Shirts">
-          <p>ROSELINLIN Womens Long Sleeve Tunic Tops Floral Fall Blouse Shirts</p>
-          <a href="https://amzn.to/4lHaFO4" target="_blank">Buy on Amazon</a>
-        </li>
-        <li class="splide__slide">
-          <img src="https://m.media-amazon.com/images/I/91v0HJqUuwL._AC_SY500_.jpg" alt="AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses">
-          <p>AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses</p>
-          <a href="https://amzn.to/42I0eRQ" target="_blank">Buy on Amazon</a>
-        </li>
-        <li class="splide__slide">
-          <img src="https://m.media-amazon.com/images/I/81lQd5FvH5L._AC_SY741_.jpg" alt="Arach&Cloz Womens Cropped Cardigan Lightweight 2025 Long Sleeve Bolero Shrug Knit Sweater Tops Cozy Clouds">
-          <p>Arach&Cloz Womens Cropped Cardigan Lightweight 2025 Long Sleeve Bolero Shrug Knit Sweater Tops Cozy Clouds</p>
-          <a href="https://amzn.to/3EhK21C" target="_blank">Buy on Amazon</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Splide JS -->
+  <ul>
+    
+    <li>
+      <div class="splide" id="splide-1">
+        <div class="splide__track">
+          <ul class="splide__list">
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/61-+Zumb32L._AC_SX679_.jpg" alt="Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women's Short Sleeve T Shirt">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/61hpDVpiIHL._AC_SX679_.jpg" alt="Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women's Short Sleeve T Shirt">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/61UUVoda4zL._AC_SX679_.jpg" alt="Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women's Short Sleeve T Shirt">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/71IggeiOJgL._AC_SX679_.jpg" alt="Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women's Short Sleeve T Shirt">
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      <p>Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women's Short Sleeve T Shirt</p>
+      <a href="https://amzn.to/3GmQmpe" target="_blank">Buy on Amazon</a>
+    </li>
+    
+    <li>
+      <div class="splide" id="splide-2">
+        <div class="splide__track">
+          <ul class="splide__list">
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/81-5Hc2tHrL._AC_SY741_.jpg" alt="ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/81TkrfVWswL._AC_SY741_.jpg" alt="ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/71cmAYf53qL._AC_SY741_.jpg" alt="ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/81hfDLWl56L._AC_SY741_.jpg" alt="ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings">
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      <p>ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings</p>
+      <a href="https://amzn.to/3RYc7hk" target="_blank">Buy on Amazon</a>
+    </li>
+    
+    <li>
+      <div class="splide" id="splide-3">
+        <div class="splide__track">
+          <ul class="splide__list">
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/81oT3AT-4IL._AC_SY741_.jpg" alt="ROSELINLIN Womens Long Sleeve Tunic Tops Floral Fall Blouse Shirts">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/81TzofTCOPL._AC_SY741_.jpg" alt="ROSELINLIN Womens Long Sleeve Tunic Tops Floral Fall Blouse Shirts">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/71q9OxMIZ-L._AC_SY741_.jpg" alt="ROSELINLIN Womens Long Sleeve Tunic Tops Floral Fall Blouse Shirts">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/81P3JZfhKrL._AC_SY741_.jpg" alt="ROSELINLIN Womens Long Sleeve Tunic Tops Floral Fall Blouse Shirts">
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      <p>ROSELINLIN Womens Long Sleeve Tunic Tops Floral Fall Blouse Shirts</p>
+      <a href="https://amzn.to/4lHaFO4" target="_blank">Buy on Amazon</a>
+    </li>
+    
+    <li>
+      <div class="splide" id="splide-4">
+        <div class="splide__track">
+          <ul class="splide__list">
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/91v0HJqUuwL._AC_SY500_.jpg" alt="AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/81LnBnbTEKL._AC_SY500_.jpg" alt="AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/81ZxlSy9D0L._AC_SY500_.jpg" alt="AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/81c2omwFewL._AC_SY500_.jpg" alt="AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/81WRGAoE4EL._AC_SY500_.jpg" alt="AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses">
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      <p>AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses</p>
+      <a href="https://amzn.to/42I0eRQ" target="_blank">Buy on Amazon</a>
+    </li>
+    
+    <li>
+      <div class="splide" id="splide-5">
+        <div class="splide__track">
+          <ul class="splide__list">
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/81lQd5FvH5L._AC_SY741_.jpg" alt="Arach&Cloz Womens Cropped Cardigan Lightweight 2025 Long Sleeve Bolero Shrug Knit Sweater Tops Cozy Clouds">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/81WG9m+pOSL._AC_SY741_.jpg" alt="Arach&Cloz Womens Cropped Cardigan Lightweight 2025 Long Sleeve Bolero Shrug Knit Sweater Tops Cozy Clouds">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/91cFin+u8zL._AC_SY741_.jpg" alt="Arach&Cloz Womens Cropped Cardigan Lightweight 2025 Long Sleeve Bolero Shrug Knit Sweater Tops Cozy Clouds">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://m.media-amazon.com/images/I/71XIVlXrpPL._AC_SY741_.jpg" alt="Arach&Cloz Womens Cropped Cardigan Lightweight 2025 Long Sleeve Bolero Shrug Knit Sweater Tops Cozy Clouds">
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      <p>Arach&Cloz Womens Cropped Cardigan Lightweight 2025 Long Sleeve Bolero Shrug Knit Sweater Tops Cozy Clouds</p>
+      <a href="https://amzn.to/3EhK21C" target="_blank">Buy on Amazon</a>
+    </li>
+    
+    <li>
+      <div class="splide" id="splide-6">
+        <div class="splide__track">
+          <ul class="splide__list">
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/61WfO5R3KSL._AC_SX679_.jpg" alt="Boho Floral Linen Shirt for Women V Neck Long Sleeve Blouse Vintage Printed Casual Loose Fit Fall Tunic Tops">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/61EoFrfY0DL._AC_SX679_.jpg" alt="Boho Floral Linen Shirt for Women V Neck Long Sleeve Blouse Vintage Printed Casual Loose Fit Fall Tunic Tops">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/6168hRK6v7L._AC_SX679_.jpg" alt="Boho Floral Linen Shirt for Women V Neck Long Sleeve Blouse Vintage Printed Casual Loose Fit Fall Tunic Tops">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/61s6nOLYE5L._AC_SX679_.jpg" alt="Boho Floral Linen Shirt for Women V Neck Long Sleeve Blouse Vintage Printed Casual Loose Fit Fall Tunic Tops">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/61pMv8hR8qL._AC_SX679_.jpg" alt="Boho Floral Linen Shirt for Women V Neck Long Sleeve Blouse Vintage Printed Casual Loose Fit Fall Tunic Tops">
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      <p>Boho Floral Linen Shirt for Women V Neck Long Sleeve Blouse Vintage Printed Casual Loose Fit Fall Tunic Tops</p>
+      <a href="https://amzn.to/4jEmumm" target="_blank">Buy on Amazon</a>
+    </li>
+    
+    <li>
+      <div class="splide" id="splide-7">
+        <div class="splide__track">
+          <ul class="splide__list">
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/71jYPxijUeL._AC_SX569_.jpg" alt="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/81lpzQIMUwL._AC_SX569_.jpg" alt="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/71Kieqj8xbL._AC_SX569_.jpg" alt="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/81QJ-ljc0nL._AC_SX569_.jpg" alt="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/81s7mLfSU3L._AC_SX569_.jpg" alt="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/81stOwh8EkL._AC_SX569_.jpg" alt="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt">
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      <p>Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt</p>
+      <a href="https://amzn.to/3EATCMY" target="_blank">Buy on Amazon</a>
+    </li>
+    
+  </ul>
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/js/splide.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      new Splide('.splide', {
-        type   : 'loop',
+      
+      new Splide('#splide-1', {
+        type: 'loop',
         perPage: 1,
-        autoplay: true,
+        pagination: true,
+        arrows: true,
+        heightRatio: 0.6,
+        cover: true,
       }).mount();
+      
+      new Splide('#splide-2', {
+        type: 'loop',
+        perPage: 1,
+        pagination: true,
+        arrows: true,
+        heightRatio: 0.6,
+        cover: true,
+      }).mount();
+      
+      new Splide('#splide-3', {
+        type: 'loop',
+        perPage: 1,
+        pagination: true,
+        arrows: true,
+        heightRatio: 0.6,
+        cover: true,
+      }).mount();
+      
+      new Splide('#splide-4', {
+        type: 'loop',
+        perPage: 1,
+        pagination: true,
+        arrows: true,
+        heightRatio: 0.6,
+        cover: true,
+      }).mount();
+      
+      new Splide('#splide-5', {
+        type: 'loop',
+        perPage: 1,
+        pagination: true,
+        arrows: true,
+        heightRatio: 0.6,
+        cover: true,
+      }).mount();
+      
+      new Splide('#splide-6', {
+        type: 'loop',
+        perPage: 1,
+        pagination: true,
+        arrows: true,
+        heightRatio: 0.6,
+        cover: true,
+      }).mount();
+      
+      new Splide('#splide-7', {
+        type: 'loop',
+        perPage: 1,
+        pagination: true,
+        arrows: true,
+        heightRatio: 0.6,
+        cover: true,
+      }).mount();
+      
     });
   </script>
 </body>
