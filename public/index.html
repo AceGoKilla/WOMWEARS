@@ -1,5 +1,4 @@
-﻿<!-- template.html -->
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,7 +7,83 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/css/splide.min.css">
   <style>
-    /* CSS ОСТАВЬ БЕЗ ИЗМЕНЕНИЙ */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #fdfdfd;
+      color: #333;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    #searchInput {
+      padding: 10px 15px;
+      font-size: 16px;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      display: block;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    ul#productList {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    ul#productList li {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      padding: 15px;
+      transition: transform 0.2s ease;
+    }
+
+    ul#productList li:hover {
+      transform: translateY(-5px);
+    }
+
+    ul#productList img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    ul#productList p {
+      font-weight: 600;
+      font-size: 16px;
+      margin: 15px 0 10px;
+    }
+
+    ul#productList a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    ul#productList a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -20,6 +95,38 @@
     
     <li>
       <div class="splide" id="splide-1">
+        <div class="splide__track">
+          <ul class="splide__list">
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/81R-sszi8sL._AC_SX569_.jpg" alt="Romanstii 3/4 Length Sleeve Womens Tops Keyhole Crewneck Shirts Business Dressy Casual Tunic Blouses Summer Basic Tees">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/81qkIof+ipL._AC_SX569_.jpg" alt="Romanstii 3/4 Length Sleeve Womens Tops Keyhole Crewneck Shirts Business Dressy Casual Tunic Blouses Summer Basic Tees">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/81X44PnelTL._AC_SX569_.jpg" alt="Romanstii 3/4 Length Sleeve Womens Tops Keyhole Crewneck Shirts Business Dressy Casual Tunic Blouses Summer Basic Tees">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/81YjZrzt87L._AC_SX569_.jpg" alt="Romanstii 3/4 Length Sleeve Womens Tops Keyhole Crewneck Shirts Business Dressy Casual Tunic Blouses Summer Basic Tees">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/81o1zvjOyGL._AC_SX569_.jpg" alt="Romanstii 3/4 Length Sleeve Womens Tops Keyhole Crewneck Shirts Business Dressy Casual Tunic Blouses Summer Basic Tees">
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      <p>Romanstii 3/4 Length Sleeve Womens Tops Keyhole Crewneck Shirts Business Dressy Casual Tunic Blouses Summer Basic Tees</p>
+      <a href="https://amzn.to/3EEmROW" target="_blank">Buy on Amazon</a>
+    </li>
+    
+    <li>
+      <div class="splide" id="splide-2">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -47,7 +154,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-2">
+      <div class="splide" id="splide-3">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -75,7 +182,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-3">
+      <div class="splide" id="splide-4">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -103,7 +210,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-4">
+      <div class="splide" id="splide-5">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -135,7 +242,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-5">
+      <div class="splide" id="splide-6">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -163,7 +270,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-6">
+      <div class="splide" id="splide-7">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -195,7 +302,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-7">
+      <div class="splide" id="splide-8">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -231,7 +338,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-8">
+      <div class="splide" id="splide-9">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -267,7 +374,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-9">
+      <div class="splide" id="splide-10">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -295,7 +402,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-10">
+      <div class="splide" id="splide-11">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -331,7 +438,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-11">
+      <div class="splide" id="splide-12">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -363,7 +470,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-12">
+      <div class="splide" id="splide-13">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -395,7 +502,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-13">
+      <div class="splide" id="splide-14">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -544,6 +651,15 @@
       }).mount();
       
       new Splide('#splide-13', {
+        type: 'loop',
+        perPage: 1,
+        pagination: true,
+        arrows: true,
+        heightRatio: 0.75,
+        cover: true,
+      }).mount();
+      
+      new Splide('#splide-14', {
         type: 'loop',
         perPage: 1,
         pagination: true,
