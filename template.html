@@ -80,6 +80,19 @@
       background-color: #fff;
     }
 
+    .splide__pagination {
+      bottom: 10px !important; /* Понижаем точки на карусели, чтобы они не перекрывали фото */
+    }
+
+    .splide__pagination li button {
+      background-color: rgba(0, 0, 0, 0.5); /* Сделаем точки полупрозрачными */
+      border-radius: 50%;
+    }
+
+    .splide__pagination li.splide__pagination__page.is-active button {
+      background-color: #f39c12; /* Активная точка будет желтой */
+    }
+
     ul#productList p {
       font-weight: 600;
       font-size: 16px;
