@@ -15,8 +15,8 @@
 
     body {
       font-family: 'Montserrat', sans-serif;
-      background: #fdfdfd;
-      color: #333;
+      background: #fff6f9;
+      color: #444;
       padding: 20px;
     }
 
@@ -27,19 +27,28 @@
 
     header h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+      font-size: 3rem;
+      color: #e91e63;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
     }
 
     #searchInput {
-      padding: 10px 15px;
+      padding: 12px 18px;
       font-size: 16px;
       width: 100%;
       max-width: 400px;
       margin: 0 auto;
       display: block;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      border: 2px solid #f8bbd0;
+      border-radius: 30px;
+      outline: none;
+      transition: 0.3s ease;
+    }
+
+    #searchInput:focus {
+      border-color: #ec407a;
+      box-shadow: 0 0 8px rgba(236, 64, 122, 0.2);
     }
 
     ul#productList {
@@ -51,34 +60,39 @@
     }
 
     ul#productList li {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      padding: 15px;
-      transition: transform 0.2s ease;
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+      padding: 16px;
+      transition: all 0.3s ease;
     }
 
     ul#productList li:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(233, 30, 99, 0.2);
     }
 
     ul#productList img {
       width: 100%;
-      height: auto;
-      border-radius: 8px;
-      object-fit: cover;
+      height: 569px;
+      border-radius: 12px;
+      object-fit: contain;
+      background-color: #fff;
     }
 
     ul#productList p {
       font-weight: 600;
       font-size: 16px;
       margin: 15px 0 10px;
+      color: #c2185b;
     }
 
     ul#productList a {
-      color: #007bff;
+      color: #ec407a;
       text-decoration: none;
       font-weight: 500;
+      display: inline-block;
+      margin-top: 5px;
     }
 
     ul#productList a:hover {
@@ -95,6 +109,42 @@
     
     <li>
       <div class="splide" id="splide-1">
+        <div class="splide__track">
+          <ul class="splide__list">
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/91Xg7vutGVL._AC_SX569_.jpg" alt="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/81dSzXK2d5L._AC_SX569_.jpg" alt="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/81Q2-mmflcL._AC_SX569_.jpg" alt="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/91VVBUYJkOL._AC_SX569_.jpg" alt="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/91dTlwoW2AL._AC_SX569_.jpg" alt="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/71E73TgI79L._AC_SX569_.jpg" alt="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual">
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      <p>3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual</p>
+      <a href="https://amzn.to/42LLrp6" target="_blank">Buy on Amazon</a>
+    </li>
+    
+    <li>
+      <div class="splide" id="splide-2">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -126,7 +176,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-2">
+      <div class="splide" id="splide-3">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -154,7 +204,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-3">
+      <div class="splide" id="splide-4">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -182,7 +232,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-4">
+      <div class="splide" id="splide-5">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -210,7 +260,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-5">
+      <div class="splide" id="splide-6">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -242,7 +292,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-6">
+      <div class="splide" id="splide-7">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -270,7 +320,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-7">
+      <div class="splide" id="splide-8">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -302,7 +352,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-8">
+      <div class="splide" id="splide-9">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -338,7 +388,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-9">
+      <div class="splide" id="splide-10">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -374,7 +424,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-10">
+      <div class="splide" id="splide-11">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -402,7 +452,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-11">
+      <div class="splide" id="splide-12">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -438,7 +488,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-12">
+      <div class="splide" id="splide-13">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -470,7 +520,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-13">
+      <div class="splide" id="splide-14">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -502,7 +552,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-14">
+      <div class="splide" id="splide-15">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -660,6 +710,15 @@
       }).mount();
       
       new Splide('#splide-14', {
+        type: 'loop',
+        perPage: 1,
+        pagination: true,
+        arrows: true,
+        heightRatio: 0.75,
+        cover: true,
+      }).mount();
+      
+      new Splide('#splide-15', {
         type: 'loop',
         perPage: 1,
         pagination: true,
