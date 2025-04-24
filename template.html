@@ -4,105 +4,148 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>WOMWEARS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/css/splide.min.css">
   <style>
-    body {
-      font-family: "Segoe UI", sans-serif;
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      background: #fafafa;
     }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #fff6f9;
+      color: #444;
+      padding: 20px;
+    }
+
     header {
-      background-color: #111;
-      color: white;
-      padding: 20px;
       text-align: center;
-      font-size: 32px;
-      letter-spacing: 2px;
+      margin-bottom: 40px;
     }
-    .search-container {
-      text-align: center;
-      margin: 20px;
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: #e91e63;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
     }
-    .search-container input {
-      padding: 10px;
-      width: 300px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
+
+    #searchInput {
+      padding: 12px 18px;
       font-size: 16px;
-    }
-    .catalog {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 20px;
-    }
-    .card {
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      width: 250px;
-      transition: transform 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    .card img {
       width: 100%;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-      object-fit: cover;
-      height: 250px;
+      max-width: 400px;
+      margin: 0 auto;
+      display: block;
+      border: 2px solid #f8bbd0;
+      border-radius: 30px;
+      outline: none;
+      transition: 0.3s ease;
     }
-    .card-content {
-      padding: 15px;
+
+    #searchInput:focus {
+      border-color: #ec407a;
+      box-shadow: 0 0 8px rgba(236, 64, 122, 0.2);
     }
-    .card-content p {
+
+    ul#productList {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    ul#productList li {
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+      padding: 16px;
+      transition: all 0.3s ease;
+    }
+
+    ul#productList li:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(233, 30, 99, 0.2);
+    }
+
+    ul#productList img {
+      width: 100%;
+      height: 569px;
+      border-radius: 12px;
+      object-fit: contain;
+      background-color: #fff;
+    }
+
+    ul#productList p {
+      font-weight: 600;
       font-size: 16px;
-      margin: 10px 0;
-      height: 60px;
-      overflow: hidden;
+      margin: 15px 0 10px;
+      color: #c2185b;
     }
-    .card-content a {
-      display: inline-block;
+
+    ul#productList a {
+      color: #ec407a;
       text-decoration: none;
-      color: white;
-      background: #111;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-weight: bold;
+      font-weight: 500;
+      display: inline-block;
+      margin-top: 5px;
     }
-    @media (max-width: 600px) {
-      .card {
-        width: 90%;
-      }
-      .search-container input {
-        width: 80%;
-      }
+
+    ul#productList a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <header>WOMWEARS</header>
-  <div class="search-container">
+  <header>
+    <h1>WOMWEARS</h1>
     <input type="text" id="searchInput" placeholder="Search for products...">
-  </div>
-  <div class="catalog" id="productCatalog">
-    <!-- PRODUCTS WILL BE INSERTED HERE -->
-    {{products}}
-  </div>
-
+  </header>
+  <ul id="productList">
+    {% for product in products %}
+    <li>
+      <div class="splide" id="splide-{{ loop.index }}">
+        <div class="splide__track">
+          <ul class="splide__list">
+            {% for image in product.images %}
+            <li class="splide__slide">
+              <img src="{{ image }}" alt="{{ product.title }}">
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <p>{{ product.title }}</p>
+      <a href="{{ product.link }}" target="_blank">Buy on Amazon</a>
+    </li>
+    {% endfor %}
+  </ul>
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/js/splide.min.js"></script>
   <script>
-    const searchInput = document.getElementById("searchInput");
-    const catalog = document.getElementById("productCatalog");
-    const originalHTML = catalog.innerHTML;
+    document.addEventListener('DOMContentLoaded', function () {
+      {% for product in products %}
+      new Splide('#splide-{{ loop.index }}', {
+        type: 'loop',
+        perPage: 1,
+        pagination: true,
+        arrows: true,
+        heightRatio: 0.75,
+        cover: true,
+      }).mount();
+      {% endfor %}
 
-    searchInput.addEventListener("input", () => {
-      const query = searchInput.value.toLowerCase();
-      const cards = catalog.querySelectorAll(".card");
-      cards.forEach(card => {
-        const text = card.innerText.toLowerCase();
-        card.style.display = text.includes(query) ? "block" : "none";
+      const searchInput = document.getElementById('searchInput');
+      const items = document.querySelectorAll('#productList li');
+      searchInput.addEventListener('input', function () {
+        const query = this.value.toLowerCase();
+        items.forEach(item => {
+          const text = item.querySelector('p').textContent.toLowerCase();
+          item.style.display = text.includes(query) ? 'block' : 'none';
+        });
       });
     });
   </script>
