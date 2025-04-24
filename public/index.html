@@ -1,4 +1,4 @@
-
+﻿<!-- template.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,84 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/css/splide.min.css">
   <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fffafc;
-      color: #333;
-    }
-    header {
-      text-align: center;
-      padding: 30px 20px;
-      background: #fff0f5;
-    }
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5em;
-      margin: 0;
-      color: #d63384;
-    }
-    input#searchInput {
-      margin-top: 15px;
-      padding: 10px;
-      width: 80%;
-      max-width: 400px;
-      font-size: 1em;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-    }
-    ul {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
-      margin: 0;
-      list-style: none;
-    }
-    li {
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
-      overflow: hidden;
-      transition: transform 0.3s ease;
-    }
-    li:hover {
-      transform: scale(1.03);
-    }
-    .splide__slide img {
-      width: 100%;
-      height: 600px;
-      object-fit: cover;
-    }
-    p {
-      padding: 10px 15px;
-      font-size: 0.95em;
-      line-height: 1.4;
-    }
-    a {
-      display: block;
-      text-align: center;
-      background: #d63384;
-      color: white;
-      text-decoration: none;
-      padding: 10px;
-      font-weight: 600;
-      border-bottom-left-radius: 15px;
-      border-bottom-right-radius: 15px;
-      transition: background 0.3s ease;
-    }
-    a:hover {
-      background: #ad296b;
-    }
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2em;
-      }
-      .splide__slide img {
-        height: 400px;
-      }
-    }
+    /* CSS ОСТАВЬ БЕЗ ИЗМЕНЕНИЙ */
   </style>
 </head>
 <body>
@@ -471,6 +394,42 @@
       <a href="https://amzn.to/4jNdY4E" target="_blank">Buy on Amazon</a>
     </li>
     
+    <li>
+      <div class="splide" id="splide-13">
+        <div class="splide__track">
+          <ul class="splide__list">
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/81KEuAzxzRL._AC_SX569_.jpg" alt="KTILG Women's V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/81Wem+TtO5L._AC_SX569_.jpg" alt="KTILG Women's V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/81IBiu6s2yL._AC_SX569_.jpg" alt="KTILG Women's V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/81z8ob0mAWL._AC_SX569_.jpg" alt="KTILG Women's V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/81rDHCPs+BL._AC_SX569_.jpg" alt="KTILG Women's V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://amzn.to/4iv1Tjy" alt="KTILG Women's V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees">
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      <p>KTILG Women's V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees</p>
+      <a href="https://amzn.to/4iv1Tjy" target="_blank">Buy on Amazon</a>
+    </li>
+    
   </ul>
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/js/splide.min.js"></script>
   <script>
@@ -584,11 +543,18 @@
         cover: true,
       }).mount();
       
+      new Splide('#splide-13', {
+        type: 'loop',
+        perPage: 1,
+        pagination: true,
+        arrows: true,
+        heightRatio: 0.75,
+        cover: true,
+      }).mount();
+      
 
-      // Поиск по названию
       const searchInput = document.getElementById('searchInput');
       const items = document.querySelectorAll('#productList li');
-
       searchInput.addEventListener('input', function () {
         const query = this.value.toLowerCase();
         items.forEach(item => {
