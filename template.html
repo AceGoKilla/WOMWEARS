@@ -167,12 +167,12 @@
   <ul id="productList">
     {% for product in products %}
     <li>
-      <div class="splide" id="splide-{{ loop.index0 }}">
+      <div class="splide" id="splide-{{ loop.index }}">
         <div class="splide__track">
           <ul class="splide__list">
             {% for image in product.images %}
             <li class="splide__slide">
-              <img src="{{ image }}" alt="{{ product.title }}" class="product-image" onclick="openModal({{ loop.index0 }})">
+              <img src="{{ image }}" alt="{{ product.title }}" class="product-image" onclick="openModal({{ loop.index }})">
             </li>
             {% endfor %}
           </ul>
@@ -186,10 +186,10 @@
 
   <!-- Модальное окно -->
   {% for product in products %}
-  <div id="modal-{{ loop.index0 }}" class="modal">
+  <div id="modal-{{ loop.index }}" class="modal">
     <div class="modal-content">
-      <span class="close" onclick="closeModal({{ loop.index0 }})">&times;</span>
-      <div id="modal-carousel-{{ loop.index0 }}" class="splide">
+      <span class="close" onclick="closeModal({{ loop.index }})">&times;</span>
+      <div id="modal-carousel-{{ loop.index }}" class="splide">
         <div class="splide__track">
           <ul class="splide__list">
             {% for image in product.images %}
@@ -201,8 +201,8 @@
         </div>
       </div>
       <div class="modal-nav">
-        <button onclick="previousImage({{ loop.index0 }})">Previous</button>
-        <button onclick="nextImage({{ loop.index0 }})">Next</button>
+        <button onclick="previousImage({{ loop.index }})">Previous</button>
+        <button onclick="nextImage({{ loop.index }})">Next</button>
       </div>
     </div>
   </div>
@@ -229,7 +229,7 @@
     // Инициализация модальных окон
     document.addEventListener('DOMContentLoaded', function () {
       {% for product in products %}
-      splides.push(new Splide(`#modal-carousel-{{ loop.index0 }}`, {
+      modals.push(new Splide(`#modal-carousel-{{ loop.index }}`, {
         type: 'loop',
         perPage: 1,
         pagination: true,
