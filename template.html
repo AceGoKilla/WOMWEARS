@@ -74,10 +74,12 @@
 
     ul#productList img {
       width: 100%;
-      height: 569px;
-      border-radius: 12px;
+      height: 741px;
       object-fit: contain;
+      border-radius: 12px;
       background-color: #fff;
+      display: block;
+      margin: 0 auto;
       cursor: pointer;
     }
 
@@ -100,61 +102,44 @@
       text-decoration: underline;
     }
 
-    /* Модальное окно */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      overflow: auto;
-      padding-top: 60px;
+    /* Убираем точки карусели */
+    .splide__pagination {
+      display: none !important;
     }
 
-    .modal-content {
-      position: relative;
-      margin: auto;
-      padding: 20px;
-      background-color: #fff;
+    /* Модальное окно */
+    #modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    #modal img {
       max-width: 90%;
+      max-height: 90%;
       border-radius: 10px;
     }
 
-    .modal img {
-      width: 100%;
-      border-radius: 12px;
-    }
+    @media screen and (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
 
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 25px;
-      font-weight: bold;
-      color: #e91e63;
-      cursor: pointer;
-    }
+      ul#productList {
+        grid-template-columns: 1fr;
+      }
 
-    .modal-nav {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 10px;
-    }
-
-    .modal-nav button {
-      background-color: #e91e63;
-      color: white;
-      border: none;
-      padding: 10px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .modal-nav button:hover {
-      background-color: #c2185b;
+      ul#productList img {
+        height: auto;
+        max-height: 500px;
+      }
     }
   </style>
 </head>
@@ -163,7 +148,6 @@
     <h1>WOMWEARS</h1>
     <input type="text" id="searchInput" placeholder="Search for products...">
   </header>
-
   <ul id="productList">
     {% for product in products %}
     <li>
@@ -172,7 +156,7 @@
           <ul class="splide__list">
             {% for image in product.images %}
             <li class="splide__slide">
-              <img src="{{ image }}" alt="{{ product.title }}" class="product-image" onclick="openModal({{ loop.index }})">
+              <img src="{{ image }}" alt="{{ product.title }}" onclick="openModal(this.src)">
             </li>
             {% endfor %}
           </ul>
@@ -184,62 +168,45 @@
     {% endfor %}
   </ul>
 
-  <!-- Модальное окно -->
-  {% for product in products %}
-  <div id="modal-{{ loop.index }}" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal({{ loop.index }})">&times;</span>
-      <div id="modal-carousel-{{ loop.index }}" class="splide">
-        <div class="splide__track">
-          <ul class="splide__list">
-            {% for image in product.images %}
-            <li class="splide__slide">
-              <img src="{{ image }}" alt="{{ product.title }}">
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-      </div>
-      <div class="modal-nav">
-        <button onclick="previousImage({{ loop.index }})">Previous</button>
-        <button onclick="nextImage({{ loop.index }})">Next</button>
-      </div>
-    </div>
+  <!-- Модалка -->
+  <div id="modal" onclick="closeModal()">
+    <img id="modalImage" src="" alt="Modal image">
   </div>
-  {% endfor %}
 
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/js/splide.min.js"></script>
   <script>
-    let modals = [];
-    let splides = [];
-
-    // Открыть модальное окно с каруселью
-    function openModal(index) {
-      const modal = document.getElementById(`modal-${index}`);
-      modal.style.display = 'block';
-      splides[index].mount();
-    }
-
-    // Закрыть модальное окно
-    function closeModal(index) {
-      const modal = document.getElementById(`modal-${index}`);
-      modal.style.display = 'none';
-    }
-
-    // Инициализация модальных окон
     document.addEventListener('DOMContentLoaded', function () {
       {% for product in products %}
-      modals.push(new Splide(`#modal-carousel-{{ loop.index }}`, {
+      new Splide('#splide-{{ loop.index }}', {
         type: 'loop',
         perPage: 1,
-        pagination: true,
+        pagination: false,
         arrows: true,
-        heightRatio: 0.75,
-        cover: true,
-      }));
-
+        height: 'auto',
+      }).mount();
       {% endfor %}
+
+      const searchInput = document.getElementById('searchInput');
+      const items = document.querySelectorAll('#productList li');
+      searchInput.addEventListener('input', function () {
+        const query = this.value.toLowerCase();
+        items.forEach(item => {
+          const text = item.querySelector('p').textContent.toLowerCase();
+          item.style.display = text.includes(query) ? 'block' : 'none';
+        });
+      });
     });
+
+    function openModal(src) {
+      const modal = document.getElementById("modal");
+      const modalImg = document.getElementById("modalImage");
+      modal.style.display = "flex";
+      modalImg.src = src;
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
   </script>
 </body>
 </html>
