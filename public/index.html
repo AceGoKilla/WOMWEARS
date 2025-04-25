@@ -30,6 +30,7 @@
       font-size: 3rem;
       color: #e91e63;
       margin-bottom: 15px;
+      letter-spacing: 1px;
     }
 
     #searchInput {
@@ -73,10 +74,12 @@
 
     ul#productList img {
       width: 100%;
-      height: 569px;
-      border-radius: 12px;
+      height: 741px;
       object-fit: contain;
+      border-radius: 12px;
       background-color: #fff;
+      display: block;
+      margin: 0 auto;
       cursor: pointer;
     }
 
@@ -99,50 +102,43 @@
       text-decoration: underline;
     }
 
-    /* Модальное окно */
-    #imageModal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
-    }
-
-    #imageModal img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.4);
-    }
-
-    #closeModal {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: white;
-      font-size: 2rem;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
     /* Убираем точки карусели */
     .splide__pagination {
       display: none !important;
     }
 
-    @media (max-width: 600px) {
+    /* Модальное окно */
+    #modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    #modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    @media screen and (max-width: 600px) {
       header h1 {
         font-size: 2rem;
       }
 
+      ul#productList {
+        grid-template-columns: 1fr;
+      }
+
       ul#productList img {
         height: auto;
+        max-height: 500px;
       }
     }
   </style>
@@ -152,11 +148,42 @@
     <h1>WOMWEARS</h1>
     <input type="text" id="searchInput" placeholder="Search for products...">
   </header>
-
   <ul id="productList">
     
     <li>
       <div class="splide" id="splide-1">
+        <div class="splide__track">
+          <ul class="splide__list">
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/71VQkKBT54L._AC_SY741_.jpg" alt="Women Puff Sleeve Square Neck Tie in Back Dresses with Zipper" onclick="openModal(this.src)">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/81IsR+iro-L._AC_SY741_.jpg" alt="Women Puff Sleeve Square Neck Tie in Back Dresses with Zipper" onclick="openModal(this.src)">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/71Z7pQR9SyL._AC_SY741_.jpg" alt="Women Puff Sleeve Square Neck Tie in Back Dresses with Zipper" onclick="openModal(this.src)">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/71cfMdxfp5L._AC_SY741_.jpg" alt="Women Puff Sleeve Square Neck Tie in Back Dresses with Zipper" onclick="openModal(this.src)">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/71Yh7HB+AIL._AC_SY741_.jpg" alt="Women Puff Sleeve Square Neck Tie in Back Dresses with Zipper" onclick="openModal(this.src)">
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      <p>Women Puff Sleeve Square Neck Tie in Back Dresses with Zipper</p>
+      <a href="https://amzn.to/3Ey8qvX" target="_blank">Buy on Amazon</a>
+    </li>
+    
+    <li>
+      <div class="splide" id="splide-2">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -192,7 +219,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-2">
+      <div class="splide" id="splide-3">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -216,7 +243,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-3">
+      <div class="splide" id="splide-4">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -244,7 +271,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-4">
+      <div class="splide" id="splide-5">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -276,7 +303,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-5">
+      <div class="splide" id="splide-6">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -312,7 +339,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-6">
+      <div class="splide" id="splide-7">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -344,7 +371,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-7">
+      <div class="splide" id="splide-8">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -372,7 +399,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-8">
+      <div class="splide" id="splide-9">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -400,7 +427,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-9">
+      <div class="splide" id="splide-10">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -428,7 +455,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-10">
+      <div class="splide" id="splide-11">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -460,7 +487,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-11">
+      <div class="splide" id="splide-12">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -488,7 +515,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-12">
+      <div class="splide" id="splide-13">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -520,7 +547,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-13">
+      <div class="splide" id="splide-14">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -556,7 +583,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-14">
+      <div class="splide" id="splide-15">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -592,7 +619,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-15">
+      <div class="splide" id="splide-16">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -620,7 +647,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-16">
+      <div class="splide" id="splide-17">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -656,7 +683,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-17">
+      <div class="splide" id="splide-18">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -688,7 +715,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-18">
+      <div class="splide" id="splide-19">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -720,7 +747,7 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-19">
+      <div class="splide" id="splide-20">
         <div class="splide__track">
           <ul class="splide__list">
             
@@ -757,10 +784,9 @@
     
   </ul>
 
-  <!-- Модальное окно -->
-  <div id="imageModal" onclick="closeModal()">
-    <span id="closeModal">&times;</span>
-    <img id="modalImage" src="" alt="Full image">
+  <!-- Модалка -->
+  <div id="modal" onclick="closeModal()">
+    <img id="modalImage" src="" alt="Modal image">
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/js/splide.min.js"></script>
@@ -770,172 +796,161 @@
       new Splide('#splide-1', {
         type: 'loop',
         perPage: 1,
-        arrows: true,
         pagination: false,
-        heightRatio: 0.75,
-        cover: true,
+        arrows: true,
+        height: 'auto',
       }).mount();
       
       new Splide('#splide-2', {
         type: 'loop',
         perPage: 1,
-        arrows: true,
         pagination: false,
-        heightRatio: 0.75,
-        cover: true,
+        arrows: true,
+        height: 'auto',
       }).mount();
       
       new Splide('#splide-3', {
         type: 'loop',
         perPage: 1,
-        arrows: true,
         pagination: false,
-        heightRatio: 0.75,
-        cover: true,
+        arrows: true,
+        height: 'auto',
       }).mount();
       
       new Splide('#splide-4', {
         type: 'loop',
         perPage: 1,
-        arrows: true,
         pagination: false,
-        heightRatio: 0.75,
-        cover: true,
+        arrows: true,
+        height: 'auto',
       }).mount();
       
       new Splide('#splide-5', {
         type: 'loop',
         perPage: 1,
-        arrows: true,
         pagination: false,
-        heightRatio: 0.75,
-        cover: true,
+        arrows: true,
+        height: 'auto',
       }).mount();
       
       new Splide('#splide-6', {
         type: 'loop',
         perPage: 1,
-        arrows: true,
         pagination: false,
-        heightRatio: 0.75,
-        cover: true,
+        arrows: true,
+        height: 'auto',
       }).mount();
       
       new Splide('#splide-7', {
         type: 'loop',
         perPage: 1,
-        arrows: true,
         pagination: false,
-        heightRatio: 0.75,
-        cover: true,
+        arrows: true,
+        height: 'auto',
       }).mount();
       
       new Splide('#splide-8', {
         type: 'loop',
         perPage: 1,
-        arrows: true,
         pagination: false,
-        heightRatio: 0.75,
-        cover: true,
+        arrows: true,
+        height: 'auto',
       }).mount();
       
       new Splide('#splide-9', {
         type: 'loop',
         perPage: 1,
-        arrows: true,
         pagination: false,
-        heightRatio: 0.75,
-        cover: true,
+        arrows: true,
+        height: 'auto',
       }).mount();
       
       new Splide('#splide-10', {
         type: 'loop',
         perPage: 1,
-        arrows: true,
         pagination: false,
-        heightRatio: 0.75,
-        cover: true,
+        arrows: true,
+        height: 'auto',
       }).mount();
       
       new Splide('#splide-11', {
         type: 'loop',
         perPage: 1,
-        arrows: true,
         pagination: false,
-        heightRatio: 0.75,
-        cover: true,
+        arrows: true,
+        height: 'auto',
       }).mount();
       
       new Splide('#splide-12', {
         type: 'loop',
         perPage: 1,
-        arrows: true,
         pagination: false,
-        heightRatio: 0.75,
-        cover: true,
+        arrows: true,
+        height: 'auto',
       }).mount();
       
       new Splide('#splide-13', {
         type: 'loop',
         perPage: 1,
-        arrows: true,
         pagination: false,
-        heightRatio: 0.75,
-        cover: true,
+        arrows: true,
+        height: 'auto',
       }).mount();
       
       new Splide('#splide-14', {
         type: 'loop',
         perPage: 1,
-        arrows: true,
         pagination: false,
-        heightRatio: 0.75,
-        cover: true,
+        arrows: true,
+        height: 'auto',
       }).mount();
       
       new Splide('#splide-15', {
         type: 'loop',
         perPage: 1,
-        arrows: true,
         pagination: false,
-        heightRatio: 0.75,
-        cover: true,
+        arrows: true,
+        height: 'auto',
       }).mount();
       
       new Splide('#splide-16', {
         type: 'loop',
         perPage: 1,
-        arrows: true,
         pagination: false,
-        heightRatio: 0.75,
-        cover: true,
+        arrows: true,
+        height: 'auto',
       }).mount();
       
       new Splide('#splide-17', {
         type: 'loop',
         perPage: 1,
-        arrows: true,
         pagination: false,
-        heightRatio: 0.75,
-        cover: true,
+        arrows: true,
+        height: 'auto',
       }).mount();
       
       new Splide('#splide-18', {
         type: 'loop',
         perPage: 1,
-        arrows: true,
         pagination: false,
-        heightRatio: 0.75,
-        cover: true,
+        arrows: true,
+        height: 'auto',
       }).mount();
       
       new Splide('#splide-19', {
         type: 'loop',
         perPage: 1,
-        arrows: true,
         pagination: false,
-        heightRatio: 0.75,
-        cover: true,
+        arrows: true,
+        height: 'auto',
+      }).mount();
+      
+      new Splide('#splide-20', {
+        type: 'loop',
+        perPage: 1,
+        pagination: false,
+        arrows: true,
+        height: 'auto',
       }).mount();
       
 
@@ -951,12 +966,14 @@
     });
 
     function openModal(src) {
-      document.getElementById('modalImage').src = src;
-      document.getElementById('imageModal').style.display = 'flex';
+      const modal = document.getElementById("modal");
+      const modalImg = document.getElementById("modalImage");
+      modal.style.display = "flex";
+      modalImg.src = src;
     }
 
     function closeModal() {
-      document.getElementById('imageModal').style.display = 'none';
+      document.getElementById("modal").style.display = "none";
     }
   </script>
 </body>
