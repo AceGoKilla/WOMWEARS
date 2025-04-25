@@ -18,7 +18,6 @@
       background: #fff6f9;
       color: #444;
       padding: 20px;
-      margin: 0;
     }
 
     header {
@@ -31,7 +30,6 @@
       font-size: 3rem;
       color: #e91e63;
       margin-bottom: 15px;
-      letter-spacing: 1px;
     }
 
     #searchInput {
@@ -75,11 +73,11 @@
 
     ul#productList img {
       width: 100%;
-      height: 569px; /* Размер фото строго 569px по высоте */
+      height: 569px;
+      border-radius: 12px;
       object-fit: contain;
       background-color: #fff;
-      border-radius: 12px;
-      cursor: pointer; /* Указываем, что картинка кликабельна */
+      cursor: pointer;
     }
 
     ul#productList p {
@@ -92,114 +90,61 @@
     ul#productList a {
       color: #ec407a;
       text-decoration: none;
-      font-weight: 600;
-      font-size: 18px;
-      background-color: #fff;
-      padding: 10px 20px;
-      border-radius: 6px;
-      border: 2px solid #ec407a;
-      transition: all 0.3s ease;
+      font-weight: 500;
       display: inline-block;
-      margin-top: 10px;
+      margin-top: 5px;
     }
 
     ul#productList a:hover {
-      background-color: #ec407a;
-      color: white;
-      text-decoration: none;
+      text-decoration: underline;
     }
 
-    /* Адаптивность для мобильных устройств */
-    @media (max-width: 768px) {
-      body {
-        padding: 10px;
-      }
-
-      header h1 {
-        font-size: 2.2rem;
-      }
-
-      #searchInput {
-        font-size: 14px;
-        max-width: 100%;
-      }
-
-      ul#productList {
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        gap: 20px;
-      }
-
-      ul#productList li {
-        padding: 12px;
-      }
-
-      ul#productList img {
-        height: auto; /* Фото будет адаптироваться по высоте */
-      }
-
-      ul#productList a {
-        font-size: 16px;
-        padding: 8px 16px;
-      }
-    }
-
-    /* Адаптивность для очень маленьких экранов (например, телефоны в портретной ориентации) */
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 1.8rem;
-      }
-
-      #searchInput {
-        font-size: 12px;
-      }
-
-      ul#productList {
-        grid-template-columns: 1fr;
-      }
-
-      ul#productList li {
-        padding: 10px;
-      }
-    }
-
-    /* Отключаем пагинацию для карусели */
-    .splide__pagination {
-      display: none;
-    }
-
-    /* Стили для модального окна */
-    .modal {
+    /* Модальное окно */
+    #imageModal {
       display: none;
       position: fixed;
-      z-index: 999;
+      z-index: 1000;
       left: 0;
       top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.8);
       justify-content: center;
       align-items: center;
     }
 
-    .modal-content {
+    #imageModal img {
       max-width: 90%;
       max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
     }
 
-    .modal img {
-      width: 100%;
-      height: auto;
-    }
-
-    .close {
+    #closeModal {
       position: absolute;
-      top: 15px;
-      right: 25px;
-      font-size: 30px;
-      color: #fff;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
       cursor: pointer;
+      z-index: 1001;
     }
 
+    /* Убираем точки карусели */
+    .splide__pagination {
+      display: none !important;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      ul#productList img {
+        height: auto;
+      }
+    }
   </style>
 </head>
 <body>
@@ -207,6 +152,7 @@
     <h1>WOMWEARS</h1>
     <input type="text" id="searchInput" placeholder="Search for products...">
   </header>
+
   <ul id="productList">
     
     <li>
@@ -215,15 +161,51 @@
           <ul class="splide__list">
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/91jzyXNGZmL._AC_SX569_.jpg" alt="U.Vomade Women's 3/4 Sleeve Plus Size Tops Collared V Neck Casual Comfy Work Blouses L-4X" class="product-image" data-large="https://c.media-amazon.com/images/I/91jzyXNGZmL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/71nSZpmXtoL._AC_SY741_.jpg" alt="ANRABESS Women's Summer Casual Sleeveless Square Neck Dress 2025 Smocked Ruffle Backless Boho Beach Cute Teen Short Sundress" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81eJm6LRmvL._AC_SX569_.jpg" alt="U.Vomade Women's 3/4 Sleeve Plus Size Tops Collared V Neck Casual Comfy Work Blouses L-4X" class="product-image" data-large="https://c.media-amazon.com/images/I/81eJm6LRmvL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/71lreVhy70L._AC_SY741_.jpg" alt="ANRABESS Women's Summer Casual Sleeveless Square Neck Dress 2025 Smocked Ruffle Backless Boho Beach Cute Teen Short Sundress" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81ZafvGSv2L._AC_SX569_.jpg" alt="U.Vomade Women's 3/4 Sleeve Plus Size Tops Collared V Neck Casual Comfy Work Blouses L-4X" class="product-image" data-large="https://c.media-amazon.com/images/I/81ZafvGSv2L._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/61j2tHNGjpL._AC_SY741_.jpg" alt="ANRABESS Women's Summer Casual Sleeveless Square Neck Dress 2025 Smocked Ruffle Backless Boho Beach Cute Teen Short Sundress" onclick="openModal(this.src)">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/61n7W5BUheL._AC_SY741_.jpg" alt="ANRABESS Women's Summer Casual Sleeveless Square Neck Dress 2025 Smocked Ruffle Backless Boho Beach Cute Teen Short Sundress" onclick="openModal(this.src)">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/613xXxls3eL._AC_SY741_.jpg" alt="ANRABESS Women's Summer Casual Sleeveless Square Neck Dress 2025 Smocked Ruffle Backless Boho Beach Cute Teen Short Sundress" onclick="openModal(this.src)">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/71dUiGZo+IL._AC_SY741_.jpg" alt="ANRABESS Women's Summer Casual Sleeveless Square Neck Dress 2025 Smocked Ruffle Backless Boho Beach Cute Teen Short Sundress" onclick="openModal(this.src)">
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      <p>ANRABESS Women's Summer Casual Sleeveless Square Neck Dress 2025 Smocked Ruffle Backless Boho Beach Cute Teen Short Sundress</p>
+      <a href="https://amzn.to/3YcTY3a" target="_blank">Buy on Amazon</a>
+    </li>
+    
+    <li>
+      <div class="splide" id="splide-2">
+        <div class="splide__track">
+          <ul class="splide__list">
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/91jzyXNGZmL._AC_SX569_.jpg" alt="U.Vomade Women's 3/4 Sleeve Plus Size Tops Collared V Neck Casual Comfy Work Blouses L-4X" onclick="openModal(this.src)">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/81eJm6LRmvL._AC_SX569_.jpg" alt="U.Vomade Women's 3/4 Sleeve Plus Size Tops Collared V Neck Casual Comfy Work Blouses L-4X" onclick="openModal(this.src)">
+            </li>
+            
+            <li class="splide__slide">
+              <img src="https://c.media-amazon.com/images/I/81ZafvGSv2L._AC_SX569_.jpg" alt="U.Vomade Women's 3/4 Sleeve Plus Size Tops Collared V Neck Casual Comfy Work Blouses L-4X" onclick="openModal(this.src)">
             </li>
             
           </ul>
@@ -234,24 +216,24 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-2">
+      <div class="splide" id="splide-3">
         <div class="splide__track">
           <ul class="splide__list">
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81Rlk63IcNL._AC_SY741_.jpg" alt="Zeagoo Womens 3/4 Length Sleeve Tunic Tops Casual V Neck Shirts Basic Tees Business Work Blouses Summer Fall 2025 Clothes" class="product-image" data-large="https://c.media-amazon.com/images/I/81Rlk63IcNL._AC_SY741_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81Rlk63IcNL._AC_SY741_.jpg" alt="Zeagoo Womens 3/4 Length Sleeve Tunic Tops Casual V Neck Shirts Basic Tees Business Work Blouses Summer Fall 2025 Clothes" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/71BD4VRL5TL._AC_SY741_.jpg" alt="Zeagoo Womens 3/4 Length Sleeve Tunic Tops Casual V Neck Shirts Basic Tees Business Work Blouses Summer Fall 2025 Clothes" class="product-image" data-large="https://c.media-amazon.com/images/I/71BD4VRL5TL._AC_SY741_.jpg">
+              <img src="https://c.media-amazon.com/images/I/71BD4VRL5TL._AC_SY741_.jpg" alt="Zeagoo Womens 3/4 Length Sleeve Tunic Tops Casual V Neck Shirts Basic Tees Business Work Blouses Summer Fall 2025 Clothes" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81zvSMdphOL._AC_SY741_.jpg" alt="Zeagoo Womens 3/4 Length Sleeve Tunic Tops Casual V Neck Shirts Basic Tees Business Work Blouses Summer Fall 2025 Clothes" class="product-image" data-large="https://c.media-amazon.com/images/I/81zvSMdphOL._AC_SY741_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81zvSMdphOL._AC_SY741_.jpg" alt="Zeagoo Womens 3/4 Length Sleeve Tunic Tops Casual V Neck Shirts Basic Tees Business Work Blouses Summer Fall 2025 Clothes" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/71lADb+M9sL._AC_SY741_.jpg" alt="Zeagoo Womens 3/4 Length Sleeve Tunic Tops Casual V Neck Shirts Basic Tees Business Work Blouses Summer Fall 2025 Clothes" class="product-image" data-large="https://c.media-amazon.com/images/I/71lADb+M9sL._AC_SY741_.jpg">
+              <img src="https://c.media-amazon.com/images/I/71lADb+M9sL._AC_SY741_.jpg" alt="Zeagoo Womens 3/4 Length Sleeve Tunic Tops Casual V Neck Shirts Basic Tees Business Work Blouses Summer Fall 2025 Clothes" onclick="openModal(this.src)">
             </li>
             
           </ul>
@@ -262,28 +244,28 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-3">
+      <div class="splide" id="splide-4">
         <div class="splide__track">
           <ul class="splide__list">
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81R0I3wZd2L._AC_SX569_.jpg" alt="LUYAA 3/4 Length Sleeve Womens Tops V Neck Tunic Tops Dressy Casual Pleated Shirts Fashion Tops for Women Trendy" class="product-image" data-large="https://c.media-amazon.com/images/I/81R0I3wZd2L._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81R0I3wZd2L._AC_SX569_.jpg" alt="LUYAA 3/4 Length Sleeve Womens Tops V Neck Tunic Tops Dressy Casual Pleated Shirts Fashion Tops for Women Trendy" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81bVJdlKxZL._AC_SX569_.jpg" alt="LUYAA 3/4 Length Sleeve Womens Tops V Neck Tunic Tops Dressy Casual Pleated Shirts Fashion Tops for Women Trendy" class="product-image" data-large="https://c.media-amazon.com/images/I/81bVJdlKxZL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81bVJdlKxZL._AC_SX569_.jpg" alt="LUYAA 3/4 Length Sleeve Womens Tops V Neck Tunic Tops Dressy Casual Pleated Shirts Fashion Tops for Women Trendy" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81xkAE38e5L._AC_SX569_.jpg" alt="LUYAA 3/4 Length Sleeve Womens Tops V Neck Tunic Tops Dressy Casual Pleated Shirts Fashion Tops for Women Trendy" class="product-image" data-large="https://c.media-amazon.com/images/I/81xkAE38e5L._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81xkAE38e5L._AC_SX569_.jpg" alt="LUYAA 3/4 Length Sleeve Womens Tops V Neck Tunic Tops Dressy Casual Pleated Shirts Fashion Tops for Women Trendy" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81sN-NTLtOL._AC_SX569_.jpg" alt="LUYAA 3/4 Length Sleeve Womens Tops V Neck Tunic Tops Dressy Casual Pleated Shirts Fashion Tops for Women Trendy" class="product-image" data-large="https://c.media-amazon.com/images/I/81sN-NTLtOL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81sN-NTLtOL._AC_SX569_.jpg" alt="LUYAA 3/4 Length Sleeve Womens Tops V Neck Tunic Tops Dressy Casual Pleated Shirts Fashion Tops for Women Trendy" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/718dT-rwq9L._AC_SX569_.jpg" alt="LUYAA 3/4 Length Sleeve Womens Tops V Neck Tunic Tops Dressy Casual Pleated Shirts Fashion Tops for Women Trendy" class="product-image" data-large="https://c.media-amazon.com/images/I/718dT-rwq9L._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/718dT-rwq9L._AC_SX569_.jpg" alt="LUYAA 3/4 Length Sleeve Womens Tops V Neck Tunic Tops Dressy Casual Pleated Shirts Fashion Tops for Women Trendy" onclick="openModal(this.src)">
             </li>
             
           </ul>
@@ -294,32 +276,32 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-4">
+      <div class="splide" id="splide-5">
         <div class="splide__track">
           <ul class="splide__list">
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/91Xg7vutGVL._AC_SX569_.jpg" alt="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual" class="product-image" data-large="https://c.media-amazon.com/images/I/91Xg7vutGVL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/91Xg7vutGVL._AC_SX569_.jpg" alt="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81dSzXK2d5L._AC_SX569_.jpg" alt="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual" class="product-image" data-large="https://c.media-amazon.com/images/I/81dSzXK2d5L._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81dSzXK2d5L._AC_SX569_.jpg" alt="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81Q2-mmflcL._AC_SX569_.jpg" alt="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual" class="product-image" data-large="https://c.media-amazon.com/images/I/81Q2-mmflcL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81Q2-mmflcL._AC_SX569_.jpg" alt="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/91VVBUYJkOL._AC_SX569_.jpg" alt="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual" class="product-image" data-large="https://c.media-amazon.com/images/I/91VVBUYJkOL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/91VVBUYJkOL._AC_SX569_.jpg" alt="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/91dTlwoW2AL._AC_SX569_.jpg" alt="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual" class="product-image" data-large="https://c.media-amazon.com/images/I/91dTlwoW2AL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/91dTlwoW2AL._AC_SX569_.jpg" alt="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/71E73TgI79L._AC_SX569_.jpg" alt="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual" class="product-image" data-large="https://c.media-amazon.com/images/I/71E73TgI79L._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/71E73TgI79L._AC_SX569_.jpg" alt="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual" onclick="openModal(this.src)">
             </li>
             
           </ul>
@@ -330,28 +312,28 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-5">
+      <div class="splide" id="splide-6">
         <div class="splide__track">
           <ul class="splide__list">
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81R-sszi8sL._AC_SX569_.jpg" alt="Romanstii 3/4 Length Sleeve Womens Tops Keyhole Crewneck Shirts Business Dressy Casual Tunic Blouses Summer Basic Tees" class="product-image" data-large="https://c.media-amazon.com/images/I/81R-sszi8sL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81R-sszi8sL._AC_SX569_.jpg" alt="Romanstii 3/4 Length Sleeve Womens Tops Keyhole Crewneck Shirts Business Dressy Casual Tunic Blouses Summer Basic Tees" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81qkIof+ipL._AC_SX569_.jpg" alt="Romanstii 3/4 Length Sleeve Womens Tops Keyhole Crewneck Shirts Business Dressy Casual Tunic Blouses Summer Basic Tees" class="product-image" data-large="https://c.media-amazon.com/images/I/81qkIof+ipL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81qkIof+ipL._AC_SX569_.jpg" alt="Romanstii 3/4 Length Sleeve Womens Tops Keyhole Crewneck Shirts Business Dressy Casual Tunic Blouses Summer Basic Tees" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81X44PnelTL._AC_SX569_.jpg" alt="Romanstii 3/4 Length Sleeve Womens Tops Keyhole Crewneck Shirts Business Dressy Casual Tunic Blouses Summer Basic Tees" class="product-image" data-large="https://c.media-amazon.com/images/I/81X44PnelTL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81X44PnelTL._AC_SX569_.jpg" alt="Romanstii 3/4 Length Sleeve Womens Tops Keyhole Crewneck Shirts Business Dressy Casual Tunic Blouses Summer Basic Tees" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81YjZrzt87L._AC_SX569_.jpg" alt="Romanstii 3/4 Length Sleeve Womens Tops Keyhole Crewneck Shirts Business Dressy Casual Tunic Blouses Summer Basic Tees" class="product-image" data-large="https://c.media-amazon.com/images/I/81YjZrzt87L._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81YjZrzt87L._AC_SX569_.jpg" alt="Romanstii 3/4 Length Sleeve Womens Tops Keyhole Crewneck Shirts Business Dressy Casual Tunic Blouses Summer Basic Tees" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81o1zvjOyGL._AC_SX569_.jpg" alt="Romanstii 3/4 Length Sleeve Womens Tops Keyhole Crewneck Shirts Business Dressy Casual Tunic Blouses Summer Basic Tees" class="product-image" data-large="https://c.media-amazon.com/images/I/81o1zvjOyGL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81o1zvjOyGL._AC_SX569_.jpg" alt="Romanstii 3/4 Length Sleeve Womens Tops Keyhole Crewneck Shirts Business Dressy Casual Tunic Blouses Summer Basic Tees" onclick="openModal(this.src)">
             </li>
             
           </ul>
@@ -362,24 +344,24 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-6">
+      <div class="splide" id="splide-7">
         <div class="splide__track">
           <ul class="splide__list">
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/61-+Zumb32L._AC_SX679_.jpg" alt="Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women's Short Sleeve T Shirt" class="product-image" data-large="https://m.media-amazon.com/images/I/61-+Zumb32L._AC_SX679_.jpg">
+              <img src="https://m.media-amazon.com/images/I/61-+Zumb32L._AC_SX679_.jpg" alt="Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women's Short Sleeve T Shirt" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/61hpDVpiIHL._AC_SX679_.jpg" alt="Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women's Short Sleeve T Shirt" class="product-image" data-large="https://m.media-amazon.com/images/I/61hpDVpiIHL._AC_SX679_.jpg">
+              <img src="https://m.media-amazon.com/images/I/61hpDVpiIHL._AC_SX679_.jpg" alt="Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women's Short Sleeve T Shirt" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/61UUVoda4zL._AC_SX679_.jpg" alt="Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women's Short Sleeve T Shirt" class="product-image" data-large="https://m.media-amazon.com/images/I/61UUVoda4zL._AC_SX679_.jpg">
+              <img src="https://m.media-amazon.com/images/I/61UUVoda4zL._AC_SX679_.jpg" alt="Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women's Short Sleeve T Shirt" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/71IggeiOJgL._AC_SX679_.jpg" alt="Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women's Short Sleeve T Shirt" class="product-image" data-large="https://m.media-amazon.com/images/I/71IggeiOJgL._AC_SX679_.jpg">
+              <img src="https://m.media-amazon.com/images/I/71IggeiOJgL._AC_SX679_.jpg" alt="Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women's Short Sleeve T Shirt" onclick="openModal(this.src)">
             </li>
             
           </ul>
@@ -390,24 +372,24 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-7">
+      <div class="splide" id="splide-8">
         <div class="splide__track">
           <ul class="splide__list">
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/81-5Hc2tHrL._AC_SY741_.jpg" alt="ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings" class="product-image" data-large="https://m.media-amazon.com/images/I/81-5Hc2tHrL._AC_SY741_.jpg">
+              <img src="https://m.media-amazon.com/images/I/81-5Hc2tHrL._AC_SY741_.jpg" alt="ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/81TkrfVWswL._AC_SY741_.jpg" alt="ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings" class="product-image" data-large="https://m.media-amazon.com/images/I/81TkrfVWswL._AC_SY741_.jpg">
+              <img src="https://m.media-amazon.com/images/I/81TkrfVWswL._AC_SY741_.jpg" alt="ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/71cmAYf53qL._AC_SY741_.jpg" alt="ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings" class="product-image" data-large="https://m.media-amazon.com/images/I/71cmAYf53qL._AC_SY741_.jpg">
+              <img src="https://m.media-amazon.com/images/I/71cmAYf53qL._AC_SY741_.jpg" alt="ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/81hfDLWl56L._AC_SY741_.jpg" alt="ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings" class="product-image" data-large="https://m.media-amazon.com/images/I/81hfDLWl56L._AC_SY741_.jpg">
+              <img src="https://m.media-amazon.com/images/I/81hfDLWl56L._AC_SY741_.jpg" alt="ROSELINLIN Women's Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings" onclick="openModal(this.src)">
             </li>
             
           </ul>
@@ -418,24 +400,24 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-8">
+      <div class="splide" id="splide-9">
         <div class="splide__track">
           <ul class="splide__list">
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/81oT3AT-4IL._AC_SY741_.jpg" alt="ROSELINLIN Womens Long Sleeve Tunic Tops Floral Fall Blouse Shirts" class="product-image" data-large="https://m.media-amazon.com/images/I/81oT3AT-4IL._AC_SY741_.jpg">
+              <img src="https://m.media-amazon.com/images/I/81oT3AT-4IL._AC_SY741_.jpg" alt="ROSELINLIN Womens Long Sleeve Tunic Tops Floral Fall Blouse Shirts" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/81TzofTCOPL._AC_SY741_.jpg" alt="ROSELINLIN Womens Long Sleeve Tunic Tops Floral Fall Blouse Shirts" class="product-image" data-large="https://m.media-amazon.com/images/I/81TzofTCOPL._AC_SY741_.jpg">
+              <img src="https://m.media-amazon.com/images/I/81TzofTCOPL._AC_SY741_.jpg" alt="ROSELINLIN Womens Long Sleeve Tunic Tops Floral Fall Blouse Shirts" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/71q9OxMIZ-L._AC_SY741_.jpg" alt="ROSELINLIN Womens Long Sleeve Tunic Tops Floral Fall Blouse Shirts" class="product-image" data-large="https://m.media-amazon.com/images/I/71q9OxMIZ-L._AC_SY741_.jpg">
+              <img src="https://m.media-amazon.com/images/I/71q9OxMIZ-L._AC_SY741_.jpg" alt="ROSELINLIN Womens Long Sleeve Tunic Tops Floral Fall Blouse Shirts" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/81P3JZfhKrL._AC_SY741_.jpg" alt="ROSELINLIN Womens Long Sleeve Tunic Tops Floral Fall Blouse Shirts" class="product-image" data-large="https://m.media-amazon.com/images/I/81P3JZfhKrL._AC_SY741_.jpg">
+              <img src="https://m.media-amazon.com/images/I/81P3JZfhKrL._AC_SY741_.jpg" alt="ROSELINLIN Womens Long Sleeve Tunic Tops Floral Fall Blouse Shirts" onclick="openModal(this.src)">
             </li>
             
           </ul>
@@ -446,28 +428,28 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-9">
+      <div class="splide" id="splide-10">
         <div class="splide__track">
           <ul class="splide__list">
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/91v0HJqUuwL._AC_SY500_.jpg" alt="AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses" class="product-image" data-large="https://m.media-amazon.com/images/I/91v0HJqUuwL._AC_SY500_.jpg">
+              <img src="https://m.media-amazon.com/images/I/91v0HJqUuwL._AC_SY500_.jpg" alt="AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/81LnBnbTEKL._AC_SY500_.jpg" alt="AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses" class="product-image" data-large="https://m.media-amazon.com/images/I/81LnBnbTEKL._AC_SY500_.jpg">
+              <img src="https://m.media-amazon.com/images/I/81LnBnbTEKL._AC_SY500_.jpg" alt="AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/81ZxlSy9D0L._AC_SY500_.jpg" alt="AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses" class="product-image" data-large="https://m.media-amazon.com/images/I/81ZxlSy9D0L._AC_SY500_.jpg">
+              <img src="https://m.media-amazon.com/images/I/81ZxlSy9D0L._AC_SY500_.jpg" alt="AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/81c2omwFewL._AC_SY500_.jpg" alt="AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses" class="product-image" data-large="https://m.media-amazon.com/images/I/81c2omwFewL._AC_SY500_.jpg">
+              <img src="https://m.media-amazon.com/images/I/81c2omwFewL._AC_SY500_.jpg" alt="AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/81WRGAoE4EL._AC_SY500_.jpg" alt="AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses" class="product-image" data-large="https://m.media-amazon.com/images/I/81WRGAoE4EL._AC_SY500_.jpg">
+              <img src="https://m.media-amazon.com/images/I/81WRGAoE4EL._AC_SY500_.jpg" alt="AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses" onclick="openModal(this.src)">
             </li>
             
           </ul>
@@ -478,24 +460,24 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-10">
+      <div class="splide" id="splide-11">
         <div class="splide__track">
           <ul class="splide__list">
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/81lQd5FvH5L._AC_SY741_.jpg" alt="Arach&Cloz Womens Cropped Cardigan Lightweight 2025 Long Sleeve Bolero Shrug Knit Sweater Tops Cozy Clouds" class="product-image" data-large="https://m.media-amazon.com/images/I/81lQd5FvH5L._AC_SY741_.jpg">
+              <img src="https://m.media-amazon.com/images/I/81lQd5FvH5L._AC_SY741_.jpg" alt="Arach&Cloz Womens Cropped Cardigan Lightweight 2025 Long Sleeve Bolero Shrug Knit Sweater Tops Cozy Clouds" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/81WG9m+pOSL._AC_SY741_.jpg" alt="Arach&Cloz Womens Cropped Cardigan Lightweight 2025 Long Sleeve Bolero Shrug Knit Sweater Tops Cozy Clouds" class="product-image" data-large="https://m.media-amazon.com/images/I/81WG9m+pOSL._AC_SY741_.jpg">
+              <img src="https://m.media-amazon.com/images/I/81WG9m+pOSL._AC_SY741_.jpg" alt="Arach&Cloz Womens Cropped Cardigan Lightweight 2025 Long Sleeve Bolero Shrug Knit Sweater Tops Cozy Clouds" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/91cFin+u8zL._AC_SY741_.jpg" alt="Arach&Cloz Womens Cropped Cardigan Lightweight 2025 Long Sleeve Bolero Shrug Knit Sweater Tops Cozy Clouds" class="product-image" data-large="https://m.media-amazon.com/images/I/91cFin+u8zL._AC_SY741_.jpg">
+              <img src="https://m.media-amazon.com/images/I/91cFin+u8zL._AC_SY741_.jpg" alt="Arach&Cloz Womens Cropped Cardigan Lightweight 2025 Long Sleeve Bolero Shrug Knit Sweater Tops Cozy Clouds" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://m.media-amazon.com/images/I/71XIVlXrpPL._AC_SY741_.jpg" alt="Arach&Cloz Womens Cropped Cardigan Lightweight 2025 Long Sleeve Bolero Shrug Knit Sweater Tops Cozy Clouds" class="product-image" data-large="https://m.media-amazon.com/images/I/71XIVlXrpPL._AC_SY741_.jpg">
+              <img src="https://m.media-amazon.com/images/I/71XIVlXrpPL._AC_SY741_.jpg" alt="Arach&Cloz Womens Cropped Cardigan Lightweight 2025 Long Sleeve Bolero Shrug Knit Sweater Tops Cozy Clouds" onclick="openModal(this.src)">
             </li>
             
           </ul>
@@ -506,28 +488,28 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-11">
+      <div class="splide" id="splide-12">
         <div class="splide__track">
           <ul class="splide__list">
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/61WfO5R3KSL._AC_SX679_.jpg" alt="Boho Floral Linen Shirt for Women V Neck Long Sleeve Blouse Vintage Printed Casual Loose Fit Fall Tunic Tops" class="product-image" data-large="https://c.media-amazon.com/images/I/61WfO5R3KSL._AC_SX679_.jpg">
+              <img src="https://c.media-amazon.com/images/I/61WfO5R3KSL._AC_SX679_.jpg" alt="Boho Floral Linen Shirt for Women V Neck Long Sleeve Blouse Vintage Printed Casual Loose Fit Fall Tunic Tops" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/61EoFrfY0DL._AC_SX679_.jpg" alt="Boho Floral Linen Shirt for Women V Neck Long Sleeve Blouse Vintage Printed Casual Loose Fit Fall Tunic Tops" class="product-image" data-large="https://c.media-amazon.com/images/I/61EoFrfY0DL._AC_SX679_.jpg">
+              <img src="https://c.media-amazon.com/images/I/61EoFrfY0DL._AC_SX679_.jpg" alt="Boho Floral Linen Shirt for Women V Neck Long Sleeve Blouse Vintage Printed Casual Loose Fit Fall Tunic Tops" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/6168hRK6v7L._AC_SX679_.jpg" alt="Boho Floral Linen Shirt for Women V Neck Long Sleeve Blouse Vintage Printed Casual Loose Fit Fall Tunic Tops" class="product-image" data-large="https://c.media-amazon.com/images/I/6168hRK6v7L._AC_SX679_.jpg">
+              <img src="https://c.media-amazon.com/images/I/6168hRK6v7L._AC_SX679_.jpg" alt="Boho Floral Linen Shirt for Women V Neck Long Sleeve Blouse Vintage Printed Casual Loose Fit Fall Tunic Tops" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/61s6nOLYE5L._AC_SX679_.jpg" alt="Boho Floral Linen Shirt for Women V Neck Long Sleeve Blouse Vintage Printed Casual Loose Fit Fall Tunic Tops" class="product-image" data-large="https://c.media-amazon.com/images/I/61s6nOLYE5L._AC_SX679_.jpg">
+              <img src="https://c.media-amazon.com/images/I/61s6nOLYE5L._AC_SX679_.jpg" alt="Boho Floral Linen Shirt for Women V Neck Long Sleeve Blouse Vintage Printed Casual Loose Fit Fall Tunic Tops" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/61pMv8hR8qL._AC_SX679_.jpg" alt="Boho Floral Linen Shirt for Women V Neck Long Sleeve Blouse Vintage Printed Casual Loose Fit Fall Tunic Tops" class="product-image" data-large="https://c.media-amazon.com/images/I/61pMv8hR8qL._AC_SX679_.jpg">
+              <img src="https://c.media-amazon.com/images/I/61pMv8hR8qL._AC_SX679_.jpg" alt="Boho Floral Linen Shirt for Women V Neck Long Sleeve Blouse Vintage Printed Casual Loose Fit Fall Tunic Tops" onclick="openModal(this.src)">
             </li>
             
           </ul>
@@ -538,32 +520,32 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-12">
+      <div class="splide" id="splide-13">
         <div class="splide__track">
           <ul class="splide__list">
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/71jYPxijUeL._AC_SX569_.jpg" alt="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt" class="product-image" data-large="https://c.media-amazon.com/images/I/71jYPxijUeL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/71jYPxijUeL._AC_SX569_.jpg" alt="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81lpzQIMUwL._AC_SX569_.jpg" alt="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt" class="product-image" data-large="https://c.media-amazon.com/images/I/81lpzQIMUwL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81lpzQIMUwL._AC_SX569_.jpg" alt="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/71Kieqj8xbL._AC_SX569_.jpg" alt="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt" class="product-image" data-large="https://c.media-amazon.com/images/I/71Kieqj8xbL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/71Kieqj8xbL._AC_SX569_.jpg" alt="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81QJ-ljc0nL._AC_SX569_.jpg" alt="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt" class="product-image" data-large="https://c.media-amazon.com/images/I/81QJ-ljc0nL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81QJ-ljc0nL._AC_SX569_.jpg" alt="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81s7mLfSU3L._AC_SX569_.jpg" alt="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt" class="product-image" data-large="https://c.media-amazon.com/images/I/81s7mLfSU3L._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81s7mLfSU3L._AC_SX569_.jpg" alt="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81stOwh8EkL._AC_SX569_.jpg" alt="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt" class="product-image" data-large="https://c.media-amazon.com/images/I/81stOwh8EkL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81stOwh8EkL._AC_SX569_.jpg" alt="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt" onclick="openModal(this.src)">
             </li>
             
           </ul>
@@ -574,32 +556,32 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-13">
+      <div class="splide" id="splide-14">
         <div class="splide__track">
           <ul class="splide__list">
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/71Ob+Zkc11L._AC_SX569_.jpg" alt="Bebonnie Women's Button Down Shirts Short Sleeve Dress Shirts Collared Work Office Blouses" class="product-image" data-large="https://c.media-amazon.com/images/I/71Ob+Zkc11L._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/71Ob+Zkc11L._AC_SX569_.jpg" alt="Bebonnie Women's Button Down Shirts Short Sleeve Dress Shirts Collared Work Office Blouses" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/717yNbjTLeL._AC_SX569_.jpg" alt="Bebonnie Women's Button Down Shirts Short Sleeve Dress Shirts Collared Work Office Blouses" class="product-image" data-large="https://c.media-amazon.com/images/I/717yNbjTLeL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/717yNbjTLeL._AC_SX569_.jpg" alt="Bebonnie Women's Button Down Shirts Short Sleeve Dress Shirts Collared Work Office Blouses" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/71NJ97FY40L._AC_SX569_.jpg" alt="Bebonnie Women's Button Down Shirts Short Sleeve Dress Shirts Collared Work Office Blouses" class="product-image" data-large="https://c.media-amazon.com/images/I/71NJ97FY40L._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/71NJ97FY40L._AC_SX569_.jpg" alt="Bebonnie Women's Button Down Shirts Short Sleeve Dress Shirts Collared Work Office Blouses" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/7142JKtyixL._AC_SX569_.jpg" alt="Bebonnie Women's Button Down Shirts Short Sleeve Dress Shirts Collared Work Office Blouses" class="product-image" data-large="https://c.media-amazon.com/images/I/7142JKtyixL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/7142JKtyixL._AC_SX569_.jpg" alt="Bebonnie Women's Button Down Shirts Short Sleeve Dress Shirts Collared Work Office Blouses" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/712Fn3N6IJL._AC_SX569_.jpg" alt="Bebonnie Women's Button Down Shirts Short Sleeve Dress Shirts Collared Work Office Blouses" class="product-image" data-large="https://c.media-amazon.com/images/I/712Fn3N6IJL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/712Fn3N6IJL._AC_SX569_.jpg" alt="Bebonnie Women's Button Down Shirts Short Sleeve Dress Shirts Collared Work Office Blouses" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/71FCv0dfqAL._AC_SX569_.jpg" alt="Bebonnie Women's Button Down Shirts Short Sleeve Dress Shirts Collared Work Office Blouses" class="product-image" data-large="https://c.media-amazon.com/images/I/71FCv0dfqAL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/71FCv0dfqAL._AC_SX569_.jpg" alt="Bebonnie Women's Button Down Shirts Short Sleeve Dress Shirts Collared Work Office Blouses" onclick="openModal(this.src)">
             </li>
             
           </ul>
@@ -610,24 +592,24 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-14">
+      <div class="splide" id="splide-15">
         <div class="splide__track">
           <ul class="splide__list">
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/71TtkME3P4L._AC_SY741_.jpg" alt="Womens Summer Tops Crewneck Short Sleeve Shirts Casual Chiffon Blouses Flowy Lace Hem Boho Clothing Trendy 2025" class="product-image" data-large="https://c.media-amazon.com/images/I/71TtkME3P4L._AC_SY741_.jpg">
+              <img src="https://c.media-amazon.com/images/I/71TtkME3P4L._AC_SY741_.jpg" alt="Womens Summer Tops Crewneck Short Sleeve Shirts Casual Chiffon Blouses Flowy Lace Hem Boho Clothing Trendy 2025" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/71BtzcxyiBL._AC_SY741_.jpg" alt="Womens Summer Tops Crewneck Short Sleeve Shirts Casual Chiffon Blouses Flowy Lace Hem Boho Clothing Trendy 2025" class="product-image" data-large="https://c.media-amazon.com/images/I/71BtzcxyiBL._AC_SY741_.jpg">
+              <img src="https://c.media-amazon.com/images/I/71BtzcxyiBL._AC_SY741_.jpg" alt="Womens Summer Tops Crewneck Short Sleeve Shirts Casual Chiffon Blouses Flowy Lace Hem Boho Clothing Trendy 2025" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/71VwjorxUSL._AC_SY741_.jpg" alt="Womens Summer Tops Crewneck Short Sleeve Shirts Casual Chiffon Blouses Flowy Lace Hem Boho Clothing Trendy 2025" class="product-image" data-large="https://c.media-amazon.com/images/I/71VwjorxUSL._AC_SY741_.jpg">
+              <img src="https://c.media-amazon.com/images/I/71VwjorxUSL._AC_SY741_.jpg" alt="Womens Summer Tops Crewneck Short Sleeve Shirts Casual Chiffon Blouses Flowy Lace Hem Boho Clothing Trendy 2025" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/71DOIJ3KHEL._AC_SY741_.jpg" alt="Womens Summer Tops Crewneck Short Sleeve Shirts Casual Chiffon Blouses Flowy Lace Hem Boho Clothing Trendy 2025" class="product-image" data-large="https://c.media-amazon.com/images/I/71DOIJ3KHEL._AC_SY741_.jpg">
+              <img src="https://c.media-amazon.com/images/I/71DOIJ3KHEL._AC_SY741_.jpg" alt="Womens Summer Tops Crewneck Short Sleeve Shirts Casual Chiffon Blouses Flowy Lace Hem Boho Clothing Trendy 2025" onclick="openModal(this.src)">
             </li>
             
           </ul>
@@ -638,32 +620,32 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-15">
+      <div class="splide" id="splide-16">
         <div class="splide__track">
           <ul class="splide__list">
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/91GpFxgIUeL._AC_SX569_.jpg" alt="LOMON Women's 2025 Fashion Tops 3/4 Length Sleeve Business Casual Blouses Summer Tees Shirts" class="product-image" data-large="https://c.media-amazon.com/images/I/91GpFxgIUeL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/91GpFxgIUeL._AC_SX569_.jpg" alt="LOMON Women's 2025 Fashion Tops 3/4 Length Sleeve Business Casual Blouses Summer Tees Shirts" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81ap67x5VTL._AC_SX569_.jpg" alt="LOMON Women's 2025 Fashion Tops 3/4 Length Sleeve Business Casual Blouses Summer Tees Shirts" class="product-image" data-large="https://c.media-amazon.com/images/I/81ap67x5VTL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81ap67x5VTL._AC_SX569_.jpg" alt="LOMON Women's 2025 Fashion Tops 3/4 Length Sleeve Business Casual Blouses Summer Tees Shirts" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81iQgRkaC+L._AC_SX569_.jpg" alt="LOMON Women's 2025 Fashion Tops 3/4 Length Sleeve Business Casual Blouses Summer Tees Shirts" class="product-image" data-large="https://c.media-amazon.com/images/I/81iQgRkaC+L._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81iQgRkaC+L._AC_SX569_.jpg" alt="LOMON Women's 2025 Fashion Tops 3/4 Length Sleeve Business Casual Blouses Summer Tees Shirts" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/811S9LmmUFL._AC_SX569_.jpg" alt="LOMON Women's 2025 Fashion Tops 3/4 Length Sleeve Business Casual Blouses Summer Tees Shirts" class="product-image" data-large="https://c.media-amazon.com/images/I/811S9LmmUFL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/811S9LmmUFL._AC_SX569_.jpg" alt="LOMON Women's 2025 Fashion Tops 3/4 Length Sleeve Business Casual Blouses Summer Tees Shirts" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/815KH7qGw7L._AC_SX569_.jpg" alt="LOMON Women's 2025 Fashion Tops 3/4 Length Sleeve Business Casual Blouses Summer Tees Shirts" class="product-image" data-large="https://c.media-amazon.com/images/I/815KH7qGw7L._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/815KH7qGw7L._AC_SX569_.jpg" alt="LOMON Women's 2025 Fashion Tops 3/4 Length Sleeve Business Casual Blouses Summer Tees Shirts" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/91ew9qutSaL._AC_SX569_.jpg" alt="LOMON Women's 2025 Fashion Tops 3/4 Length Sleeve Business Casual Blouses Summer Tees Shirts" class="product-image" data-large="https://c.media-amazon.com/images/I/91ew9qutSaL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/91ew9qutSaL._AC_SX569_.jpg" alt="LOMON Women's 2025 Fashion Tops 3/4 Length Sleeve Business Casual Blouses Summer Tees Shirts" onclick="openModal(this.src)">
             </li>
             
           </ul>
@@ -674,28 +656,28 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-16">
+      <div class="splide" id="splide-17">
         <div class="splide__track">
           <ul class="splide__list">
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81EPDo0f4fL._AC_SX569_.jpg" alt="Lotusmile Summer Chiffon Dressy Casual Blouses Elegant Ruffle Short Sleeve Work Tops for Women Trendy" class="product-image" data-large="https://c.media-amazon.com/images/I/81EPDo0f4fL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81EPDo0f4fL._AC_SX569_.jpg" alt="Lotusmile Summer Chiffon Dressy Casual Blouses Elegant Ruffle Short Sleeve Work Tops for Women Trendy" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81vzOaTwOvL._AC_SX569_.jpg" alt="Lotusmile Summer Chiffon Dressy Casual Blouses Elegant Ruffle Short Sleeve Work Tops for Women Trendy" class="product-image" data-large="https://c.media-amazon.com/images/I/81vzOaTwOvL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81vzOaTwOvL._AC_SX569_.jpg" alt="Lotusmile Summer Chiffon Dressy Casual Blouses Elegant Ruffle Short Sleeve Work Tops for Women Trendy" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81OyM9xzRbL._AC_SX569_.jpg" alt="Lotusmile Summer Chiffon Dressy Casual Blouses Elegant Ruffle Short Sleeve Work Tops for Women Trendy" class="product-image" data-large="https://c.media-amazon.com/images/I/81OyM9xzRbL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81OyM9xzRbL._AC_SX569_.jpg" alt="Lotusmile Summer Chiffon Dressy Casual Blouses Elegant Ruffle Short Sleeve Work Tops for Women Trendy" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81Io2xJZUPL._AC_SX569_.jpg" alt="Lotusmile Summer Chiffon Dressy Casual Blouses Elegant Ruffle Short Sleeve Work Tops for Women Trendy" class="product-image" data-large="https://c.media-amazon.com/images/I/81Io2xJZUPL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81Io2xJZUPL._AC_SX569_.jpg" alt="Lotusmile Summer Chiffon Dressy Casual Blouses Elegant Ruffle Short Sleeve Work Tops for Women Trendy" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81ERnTEMEGL._AC_SX569_.jpg" alt="Lotusmile Summer Chiffon Dressy Casual Blouses Elegant Ruffle Short Sleeve Work Tops for Women Trendy" class="product-image" data-large="https://c.media-amazon.com/images/I/81ERnTEMEGL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81ERnTEMEGL._AC_SX569_.jpg" alt="Lotusmile Summer Chiffon Dressy Casual Blouses Elegant Ruffle Short Sleeve Work Tops for Women Trendy" onclick="openModal(this.src)">
             </li>
             
           </ul>
@@ -706,28 +688,28 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-17">
+      <div class="splide" id="splide-18">
         <div class="splide__track">
           <ul class="splide__list">
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/8191tlSoooL._AC_SY741_.jpg" alt="Blingfit 3/4 Length Sleeve Shirts for Womens Pleated Summer Tops 2025 Ruffle Bell Sleeve Fasion Trendy Spring Blouses" class="product-image" data-large="https://c.media-amazon.com/images/I/8191tlSoooL._AC_SY741_.jpg">
+              <img src="https://c.media-amazon.com/images/I/8191tlSoooL._AC_SY741_.jpg" alt="Blingfit 3/4 Length Sleeve Shirts for Womens Pleated Summer Tops 2025 Ruffle Bell Sleeve Fasion Trendy Spring Blouses" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81lkl+hb07L._AC_SX679_.jpg" alt="Blingfit 3/4 Length Sleeve Shirts for Womens Pleated Summer Tops 2025 Ruffle Bell Sleeve Fasion Trendy Spring Blouses" class="product-image" data-large="https://c.media-amazon.com/images/I/81lkl+hb07L._AC_SX679_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81lkl+hb07L._AC_SX679_.jpg" alt="Blingfit 3/4 Length Sleeve Shirts for Womens Pleated Summer Tops 2025 Ruffle Bell Sleeve Fasion Trendy Spring Blouses" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/813HnW3sORL._AC_SX679_.jpg" alt="Blingfit 3/4 Length Sleeve Shirts for Womens Pleated Summer Tops 2025 Ruffle Bell Sleeve Fasion Trendy Spring Blouses" class="product-image" data-large="https://c.media-amazon.com/images/I/813HnW3sORL._AC_SX679_.jpg">
+              <img src="https://c.media-amazon.com/images/I/813HnW3sORL._AC_SX679_.jpg" alt="Blingfit 3/4 Length Sleeve Shirts for Womens Pleated Summer Tops 2025 Ruffle Bell Sleeve Fasion Trendy Spring Blouses" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/819g27sdasL._AC_SX679_.jpg" alt="Blingfit 3/4 Length Sleeve Shirts for Womens Pleated Summer Tops 2025 Ruffle Bell Sleeve Fasion Trendy Spring Blouses" class="product-image" data-large="https://c.media-amazon.com/images/I/819g27sdasL._AC_SX679_.jpg">
+              <img src="https://c.media-amazon.com/images/I/819g27sdasL._AC_SX679_.jpg" alt="Blingfit 3/4 Length Sleeve Shirts for Womens Pleated Summer Tops 2025 Ruffle Bell Sleeve Fasion Trendy Spring Blouses" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81q7f6TKbHL._AC_SX679_.jpg" alt="Blingfit 3/4 Length Sleeve Shirts for Womens Pleated Summer Tops 2025 Ruffle Bell Sleeve Fasion Trendy Spring Blouses" class="product-image" data-large="https://c.media-amazon.com/images/I/81q7f6TKbHL._AC_SX679_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81q7f6TKbHL._AC_SX679_.jpg" alt="Blingfit 3/4 Length Sleeve Shirts for Womens Pleated Summer Tops 2025 Ruffle Bell Sleeve Fasion Trendy Spring Blouses" onclick="openModal(this.src)">
             </li>
             
           </ul>
@@ -738,32 +720,32 @@
     </li>
     
     <li>
-      <div class="splide" id="splide-18">
+      <div class="splide" id="splide-19">
         <div class="splide__track">
           <ul class="splide__list">
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81KEuAzxzRL._AC_SX569_.jpg" alt="KTILG Women's V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees" class="product-image" data-large="https://c.media-amazon.com/images/I/81KEuAzxzRL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81KEuAzxzRL._AC_SX569_.jpg" alt="KTILG Women's V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81Wem+TtO5L._AC_SX569_.jpg" alt="KTILG Women's V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees" class="product-image" data-large="https://c.media-amazon.com/images/I/81Wem+TtO5L._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81Wem+TtO5L._AC_SX569_.jpg" alt="KTILG Women's V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81IBiu6s2yL._AC_SX569_.jpg" alt="KTILG Women's V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees" class="product-image" data-large="https://c.media-amazon.com/images/I/81IBiu6s2yL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81IBiu6s2yL._AC_SX569_.jpg" alt="KTILG Women's V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81z8ob0mAWL._AC_SX569_.jpg" alt="KTILG Women's V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees" class="product-image" data-large="https://c.media-amazon.com/images/I/81z8ob0mAWL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81z8ob0mAWL._AC_SX569_.jpg" alt="KTILG Women's V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://c.media-amazon.com/images/I/81rDHCPs+BL._AC_SX569_.jpg" alt="KTILG Women's V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees" class="product-image" data-large="https://c.media-amazon.com/images/I/81rDHCPs+BL._AC_SX569_.jpg">
+              <img src="https://c.media-amazon.com/images/I/81rDHCPs+BL._AC_SX569_.jpg" alt="KTILG Women's V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees" onclick="openModal(this.src)">
             </li>
             
             <li class="splide__slide">
-              <img src="https://amzn.to/4iv1Tjy" alt="KTILG Women's V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees" class="product-image" data-large="https://amzn.to/4iv1Tjy">
+              <img src="https://amzn.to/4iv1Tjy" alt="KTILG Women's V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees" onclick="openModal(this.src)">
             </li>
             
           </ul>
@@ -775,12 +757,10 @@
     
   </ul>
 
-  <!-- Модальное окно для просмотра изображений -->
-  <div id="imageModal" class="modal">
-    <span class="close">&times;</span>
-    <div class="modal-content">
-      <img src="" alt="Product Image" id="modalImage">
-    </div>
+  <!-- Модальное окно -->
+  <div id="imageModal" onclick="closeModal()">
+    <span id="closeModal">&times;</span>
+    <img id="modalImage" src="" alt="Full image">
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/js/splide.min.js"></script>
@@ -790,8 +770,8 @@
       new Splide('#splide-1', {
         type: 'loop',
         perPage: 1,
-        pagination: false, /* Отключаем пагинацию */
         arrows: true,
+        pagination: false,
         heightRatio: 0.75,
         cover: true,
       }).mount();
@@ -799,8 +779,8 @@
       new Splide('#splide-2', {
         type: 'loop',
         perPage: 1,
-        pagination: false, /* Отключаем пагинацию */
         arrows: true,
+        pagination: false,
         heightRatio: 0.75,
         cover: true,
       }).mount();
@@ -808,8 +788,8 @@
       new Splide('#splide-3', {
         type: 'loop',
         perPage: 1,
-        pagination: false, /* Отключаем пагинацию */
         arrows: true,
+        pagination: false,
         heightRatio: 0.75,
         cover: true,
       }).mount();
@@ -817,8 +797,8 @@
       new Splide('#splide-4', {
         type: 'loop',
         perPage: 1,
-        pagination: false, /* Отключаем пагинацию */
         arrows: true,
+        pagination: false,
         heightRatio: 0.75,
         cover: true,
       }).mount();
@@ -826,8 +806,8 @@
       new Splide('#splide-5', {
         type: 'loop',
         perPage: 1,
-        pagination: false, /* Отключаем пагинацию */
         arrows: true,
+        pagination: false,
         heightRatio: 0.75,
         cover: true,
       }).mount();
@@ -835,8 +815,8 @@
       new Splide('#splide-6', {
         type: 'loop',
         perPage: 1,
-        pagination: false, /* Отключаем пагинацию */
         arrows: true,
+        pagination: false,
         heightRatio: 0.75,
         cover: true,
       }).mount();
@@ -844,8 +824,8 @@
       new Splide('#splide-7', {
         type: 'loop',
         perPage: 1,
-        pagination: false, /* Отключаем пагинацию */
         arrows: true,
+        pagination: false,
         heightRatio: 0.75,
         cover: true,
       }).mount();
@@ -853,8 +833,8 @@
       new Splide('#splide-8', {
         type: 'loop',
         perPage: 1,
-        pagination: false, /* Отключаем пагинацию */
         arrows: true,
+        pagination: false,
         heightRatio: 0.75,
         cover: true,
       }).mount();
@@ -862,8 +842,8 @@
       new Splide('#splide-9', {
         type: 'loop',
         perPage: 1,
-        pagination: false, /* Отключаем пагинацию */
         arrows: true,
+        pagination: false,
         heightRatio: 0.75,
         cover: true,
       }).mount();
@@ -871,8 +851,8 @@
       new Splide('#splide-10', {
         type: 'loop',
         perPage: 1,
-        pagination: false, /* Отключаем пагинацию */
         arrows: true,
+        pagination: false,
         heightRatio: 0.75,
         cover: true,
       }).mount();
@@ -880,8 +860,8 @@
       new Splide('#splide-11', {
         type: 'loop',
         perPage: 1,
-        pagination: false, /* Отключаем пагинацию */
         arrows: true,
+        pagination: false,
         heightRatio: 0.75,
         cover: true,
       }).mount();
@@ -889,8 +869,8 @@
       new Splide('#splide-12', {
         type: 'loop',
         perPage: 1,
-        pagination: false, /* Отключаем пагинацию */
         arrows: true,
+        pagination: false,
         heightRatio: 0.75,
         cover: true,
       }).mount();
@@ -898,8 +878,8 @@
       new Splide('#splide-13', {
         type: 'loop',
         perPage: 1,
-        pagination: false, /* Отключаем пагинацию */
         arrows: true,
+        pagination: false,
         heightRatio: 0.75,
         cover: true,
       }).mount();
@@ -907,8 +887,8 @@
       new Splide('#splide-14', {
         type: 'loop',
         perPage: 1,
-        pagination: false, /* Отключаем пагинацию */
         arrows: true,
+        pagination: false,
         heightRatio: 0.75,
         cover: true,
       }).mount();
@@ -916,8 +896,8 @@
       new Splide('#splide-15', {
         type: 'loop',
         perPage: 1,
-        pagination: false, /* Отключаем пагинацию */
         arrows: true,
+        pagination: false,
         heightRatio: 0.75,
         cover: true,
       }).mount();
@@ -925,8 +905,8 @@
       new Splide('#splide-16', {
         type: 'loop',
         perPage: 1,
-        pagination: false, /* Отключаем пагинацию */
         arrows: true,
+        pagination: false,
         heightRatio: 0.75,
         cover: true,
       }).mount();
@@ -934,8 +914,8 @@
       new Splide('#splide-17', {
         type: 'loop',
         perPage: 1,
-        pagination: false, /* Отключаем пагинацию */
         arrows: true,
+        pagination: false,
         heightRatio: 0.75,
         cover: true,
       }).mount();
@@ -943,8 +923,17 @@
       new Splide('#splide-18', {
         type: 'loop',
         perPage: 1,
-        pagination: false, /* Отключаем пагинацию */
         arrows: true,
+        pagination: false,
+        heightRatio: 0.75,
+        cover: true,
+      }).mount();
+      
+      new Splide('#splide-19', {
+        type: 'loop',
+        perPage: 1,
+        arrows: true,
+        pagination: false,
         heightRatio: 0.75,
         cover: true,
       }).mount();
@@ -959,32 +948,16 @@
           item.style.display = text.includes(query) ? 'block' : 'none';
         });
       });
-
-      // Модальное окно для открытия фото
-      const modal = document.getElementById("imageModal");
-      const modalImage = document.getElementById("modalImage");
-      const closeBtn = document.getElementsByClassName("close")[0];
-
-      // Открыть модальное окно при клике на изображение
-      document.querySelectorAll(".product-image").forEach(image => {
-        image.addEventListener("click", function () {
-          modal.style.display = "flex";
-          modalImage.src = image.dataset.large;
-        });
-      });
-
-      // Закрыть модальное окно
-      closeBtn.addEventListener("click", function () {
-        modal.style.display = "none";
-      });
-
-      // Закрыть модальное окно, если кликнули вне изображения
-      window.addEventListener("click", function (event) {
-        if (event.target === modal) {
-          modal.style.display = "none";
-        }
-      });
     });
+
+    function openModal(src) {
+      document.getElementById('modalImage').src = src;
+      document.getElementById('imageModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('imageModal').style.display = 'none';
+    }
   </script>
 </body>
 </html>
