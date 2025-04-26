@@ -102,11 +102,6 @@
       text-decoration: underline;
     }
 
-    /* Убираем точки карусели */
-    .splide__pagination {
-      display: none !important;
-    }
-
     /* Модальное окно */
     #modal {
       display: none;
@@ -121,9 +116,14 @@
       align-items: center;
     }
 
+    #modal .splide {
+      width: 80%;
+      height: auto;
+    }
+
     #modal img {
-      max-width: 90%;
-      max-height: 90%;
+      max-width: 100%;
+      height: auto;
       border-radius: 10px;
     }
 
@@ -156,7 +156,7 @@
           <ul class="splide__list">
             {% for image in product.images %}
             <li class="splide__slide">
-              <img src="{{ image }}" alt="{{ product.title }}" onclick="openModal(this.src)">
+              <img src="{{ image }}" alt="{{ product.title }}" onclick="openModal({{ loop.index }}, {{ loop.index0 }})">
             </li>
             {% endfor %}
           </ul>
@@ -168,9 +168,15 @@
     {% endfor %}
   </ul>
 
-  <!-- Модалка -->
+  <!-- Модалка с слайдером -->
   <div id="modal" onclick="closeModal()">
-    <img id="modalImage" src="" alt="Modal image">
+    <div class="splide" id="modalSplide">
+      <div class="splide__track">
+        <ul class="splide__list" id="modalSlides">
+          <!-- Слайды будут добавляться динамически -->
+        </ul>
+      </div>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/js/splide.min.js"></script>
@@ -197,11 +203,41 @@
       });
     });
 
-    function openModal(src) {
+    let currentModalProduct = null;
+
+    function openModal(productIndex, imageIndex) {
+      currentModalProduct = productIndex;
       const modal = document.getElementById("modal");
-      const modalImg = document.getElementById("modalImage");
+      const modalSlides = document.getElementById("modalSlides");
+
+      // Очищаем текущие слайды
+      modalSlides.innerHTML = '';
+
+      // Добавляем все изображения товара в модалку
+      const productImages = {{ products|tojson }}[productIndex - 1].images;
+      productImages.forEach(function(image) {
+        const li = document.createElement("li");
+        const img = document.createElement("img");
+        img.src = image;
+        img.alt = 'Modal Image';
+        li.appendChild(img);
+        modalSlides.appendChild(li);
+      });
+
+      // Инициализируем Splide для слайдера в модалке
+      const modalSplide = new Splide('#modalSplide', {
+        type: 'fade',
+        heightRatio: 0.7,
+        pagination: false,
+        arrows: true,
+        focus: 'center',
+      });
+
+      modalSplide.mount();
+
+      modalSplide.go(imageIndex);
+
       modal.style.display = "flex";
-      modalImg.src = src;
     }
 
     function closeModal() {
