@@ -1,248 +1,258 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>WOMWEARS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/css/splide.min.css">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Montserrat', sans-serif; background: #fff6f9; padding: 20px; }
+    header { text-align: center; margin-bottom: 40px; }
+    header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: #e91e63; margin-bottom: 15px; }
+    #searchInput { padding: 12px 18px; font-size: 16px; width: 100%; max-width: 400px; margin: 0 auto; display: block; border: 2px solid #f8bbd0; border-radius: 30px; }
+    
+    /* Стили для вкладок */
+    .tabs { display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 30px; }
+    .tab-button { 
+      padding: 10px 20px; 
+      margin: 5px; 
+      background: #f8bbd0; 
+      color: #fff; 
+      border: none; 
+      border-radius: 20px; 
+      cursor: pointer; 
+      font-size: 16px; 
+      font-weight: 600; 
+      text-transform: capitalize; 
+      transition: background 0.3s; 
     }
+    .tab-button:hover { background: #f06292; }
+    .tab-button.active { background: #e91e63; }
 
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: #fff6f9;
-      color: #444;
-      padding: 20px;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      color: #e91e63;
-      margin-bottom: 15px;
-      letter-spacing: 1px;
-    }
-
-    #searchInput {
-      padding: 12px 18px;
-      font-size: 16px;
-      width: 100%;
-      max-width: 400px;
-      margin: 0 auto;
-      display: block;
-      border: 2px solid #f8bbd0;
-      border-radius: 30px;
-      outline: none;
-      transition: 0.3s ease;
-    }
-
-    #searchInput:focus {
-      border-color: #ec407a;
-      box-shadow: 0 0 8px rgba(236, 64, 122, 0.2);
-    }
-
-    ul#productList {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 30px;
-      margin-top: 30px;
-    }
-
-    ul#productList li {
-      background: #ffffff;
-      border-radius: 18px;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
-      padding: 16px;
-      transition: all 0.3s ease;
-    }
-
-    ul#productList li:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 20px rgba(233, 30, 99, 0.2);
-    }
-
-    ul#productList img {
-      width: 100%;
-      height: 741px;
-      object-fit: contain;
-      border-radius: 12px;
-      background-color: #fff;
-      display: block;
-      margin: 0 auto;
-      cursor: pointer;
-    }
-
-    ul#productList p {
-      font-weight: 600;
-      font-size: 16px;
-      margin: 15px 0 10px;
-      color: #c2185b;
-    }
-
-    ul#productList a {
-      color: #ec407a;
-      text-decoration: none;
-      font-weight: 500;
-      display: inline-block;
-      margin-top: 5px;
-    }
-
-    ul#productList a:hover {
-      text-decoration: underline;
-    }
+    /* Стили для товаров */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    ul.product-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; margin-top: 30px; }
+    ul.product-list li { background: #fff; border-radius: 18px; box-shadow: 0 8px 18px rgba(0,0,0,0.06); padding: 16px; }
+    ul.product-list img { width: 100%; height: 400px; object-fit: cover; border-radius: 12px; background: #fff; cursor: pointer; }
+    ul.product-list p { font-weight: 600; font-size: 16px; margin: 15px 0 10px; color: #c2185b; }
+    ul.product-list a { color: #ec407a; text-decoration: none; }
+    .category { font-size: 14px; color: #999; margin-top: 8px; font-weight: 600; }
 
     /* Модальное окно */
-    #modal {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      left: 0;
-      top: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.8);
-      justify-content: center;
-      align-items: center;
+    #modal { 
+      display: none; 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100vw; 
+      height: 100vh; 
+      background: rgba(0,0,0,0.8); 
+      justify-content: center; 
+      align-items: center; 
+      z-index: 9999; 
     }
-
     #modal .splide {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 80%;
-      height: auto;
+      max-width: 700px;
+      max-height: 80vh;
     }
+    #modal img { width: 100%; height: auto; border-radius: 10px; }
 
-    #modal img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
-
+    /* Адаптивность */
     @media screen and (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-
-      ul#productList {
-        grid-template-columns: 1fr;
-      }
-
-      ul#productList img {
-        height: auto;
-        max-height: 500px;
-      }
+      header h1 { font-size: 2rem; }
+      ul.product-list { grid-template-columns: 1fr; }
+      ul.product-list img { height: 300px; }
+      #modal .splide { width: 90%; max-height: 70vh; }
+      .tab-button { font-size: 14px; padding: 8px 16px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>WOMWEARS</h1>
-    <input type="text" id="searchInput" placeholder="Search for products...">
-  </header>
-  <ul id="productList">
-    {% for product in products %}
-    <li>
-      <div class="splide" id="splide-{{ loop.index }}">
-        <div class="splide__track">
-          <ul class="splide__list">
-            {% for image in product.images %}
-            <li class="splide__slide">
-              <img src="{{ image }}" alt="{{ product.title }}" onclick="openModal({{ loop.index }}, {{ loop.index0 }})">
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-      </div>
-      <p>{{ product.title }}</p>
-      <a href="{{ product.link }}" target="_blank">Buy on Amazon</a>
-    </li>
-    {% endfor %}
-  </ul>
 
-  <!-- Модалка с слайдером -->
-  <div id="modal" onclick="closeModal()">
-    <div class="splide" id="modalSplide">
-      <div class="splide__track">
-        <ul class="splide__list" id="modalSlides">
-          <!-- Слайды будут добавляться динамически -->
-        </ul>
-      </div>
+<header>
+  <h1>WOMWEARS</h1>
+  <input type="text" id="searchInput" placeholder="Search products...">
+</header>
+
+<!-- Вкладки -->
+<div class="tabs">
+  {% for category in products.keys() %}
+    {% if products[category] %} <!-- Показываем вкладку только если категория не пустая -->
+      <button class="tab-button" data-tab="{{ category }}">{{ category }}</button>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<!-- Контент вкладок -->
+{% for category, items in products.items() %}
+  {% if items %}
+    <div class="tab-content" id="{{ category }}">
+      <ul class="product-list">
+        {% for product in items %}
+          <li data-product-index="{{ product | tojson | e }}">
+            <div class="product-images">
+              {% if product.images %}
+                <img src="{{ product.images[0] | e }}" alt="{{ product.title | e }}">
+              {% else %}
+                <p>No image available</p>
+              {% endif %}
+            </div>
+            <p>{{ product.title | e }}</p>
+            <p class="category">Category: {{ category | e }}</p>
+            <a href="{{ product.link | e }}" target="_blank">Buy on Amazon</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+{% endfor %}
+
+<!-- Пустое сообщение, если товаров нет -->
+{% set has_products = false %}
+{% for category, items in products.items() %}
+  {% if items %}
+    {% set has_products = true %}
+  {% endif %}
+{% endfor %}
+{% if not products or not has_products %}
+  <p>No products available.</p>
+{% endif %}
+
+<!-- Модальное окно -->
+<div id="modal" onclick="closeModal(event)">
+  <div class="splide" id="modalSplide">
+    <div class="splide__track">
+      <ul class="splide__list" id="modalSlides"></ul>
     </div>
   </div>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/js/splide.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      {% for product in products %}
-      new Splide('#splide-{{ loop.index }}', {
-        type: 'loop',
-        perPage: 1,
-        pagination: false,
-        arrows: true,
-        height: 'auto',
-      }).mount();
-      {% endfor %}
-
-      const searchInput = document.getElementById('searchInput');
-      const items = document.querySelectorAll('#productList li');
-      searchInput.addEventListener('input', function () {
-        const query = this.value.toLowerCase();
-        items.forEach(item => {
-          const text = item.querySelector('p').textContent.toLowerCase();
-          item.style.display = text.includes(query) ? 'block' : 'none';
-        });
-      });
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/js/splide.min.js"></script>
+<script>
+// Создаем плоский список товаров для JavaScript
+const products = [];
+{% for category, items in products.items() %}
+  {% for product in items %}
+    products.push({
+      title: {{ product.title | tojson }},
+      images: {{ product.images | tojson }},
+      link: {{ product.link | tojson }},
+      category: {{ category | tojson }}
     });
+  {% endfor %}
+{% endfor %}
 
-    let currentModalProduct = null;
+let modalSplideInstance = null;
 
-    function openModal(productIndex, imageIndex) {
-      currentModalProduct = productIndex;
-      const modal = document.getElementById("modal");
-      const modalSlides = document.getElementById("modalSlides");
+// Открытие модального окна при клике на изображение
+document.querySelectorAll('.product-images img').forEach(img => {
+  img.addEventListener('click', function() {
+    const li = this.closest('li');
+    const productData = JSON.parse(li.getAttribute('data-product-index'));
+    const productIndex = products.findIndex(p => p.title === productData.title && p.category === productData.category);
+    openModal(productIndex);
+  });
+});
 
-      // Очищаем текущие слайды
-      modalSlides.innerHTML = '';
+// Логика модального окна
+function openModal(productIndex) {
+  const modal = document.getElementById("modal");
+  const modalSlides = document.getElementById("modalSlides");
 
-      // Добавляем все изображения товара в модалку
-      const productImages = {{ products|tojson }}[productIndex - 1].images;
-      productImages.forEach(function(image) {
-        const li = document.createElement("li");
-        const img = document.createElement("img");
-        img.src = image;
-        img.alt = 'Modal Image';
-        li.appendChild(img);
-        modalSlides.appendChild(li);
-      });
+  modalSlides.innerHTML = '';
 
-      // Инициализируем Splide для слайдера в модалке
-      const modalSplide = new Splide('#modalSplide', {
-        type: 'fade',
-        heightRatio: 0.7,
-        pagination: false,
-        arrows: true,
-        focus: 'center',
-      });
+  const images = products[productIndex].images || [];
 
-      modalSplide.mount();
+  if (images.length === 0) {
+    const li = document.createElement('li');
+    li.className = 'splide__slide';
+    li.textContent = 'No images available';
+    modalSlides.appendChild(li);
+  } else {
+    images.forEach(imgSrc => {
+      const li = document.createElement('li');
+      li.className = 'splide__slide';
+      const img = document.createElement('img');
+      img.src = imgSrc;
+      li.appendChild(img);
+      modalSlides.appendChild(li);
+    });
+  }
 
-      modalSplide.go(imageIndex);
+  if (modalSplideInstance) {
+    modalSplideInstance.destroy();
+  }
 
-      modal.style.display = "flex";
+  modalSplideInstance = new Splide('#modalSplide', {
+    type: 'loop',
+    perPage: 1,
+    arrows: true,
+    pagination: true,
+    focus: 'center',
+    speed: 600,
+  });
+
+  modalSplideInstance.mount();
+  modal.style.display = "flex";
+}
+
+function closeModal(event) {
+  if (event.target.id === "modal") {
+    document.getElementById("modal").style.display = "none";
+    if (modalSplideInstance) {
+      modalSplideInstance.destroy();
+      modalSplideInstance = null;
     }
+  }
+}
 
-    function closeModal() {
-      document.getElementById("modal").style.display = "none";
-    }
-  </script>
+// Логика вкладок
+document.querySelectorAll('.tab-button').forEach(button => {
+  button.addEventListener('click', function() {
+    const tabName = this.getAttribute('data-tab');
+
+    // Удаляем класс active у всех вкладок и контента
+    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+    // Добавляем класс active к текущей вкладке и контенту
+    this.classList.add('active');
+    document.getElementById(tabName).classList.add('active');
+
+    // Сбрасываем поиск
+    document.getElementById('searchInput').value = '';
+    document.querySelectorAll('.product-list li').forEach(item => {
+      item.style.display = 'block';
+    });
+  });
+});
+
+// Показываем первую вкладку по умолчанию
+if (document.querySelector('.tab-button')) {
+  document.querySelector('.tab-button').click();
+}
+
+// Поиск
+document.getElementById('searchInput').addEventListener('input', function() {
+  const query = this.value.toLowerCase();
+  const activeTab = document.querySelector('.tab-content.active');
+  if (!activeTab) return;
+
+  const items = activeTab.querySelectorAll('.product-list li');
+  items.forEach(item => {
+    const text = item.querySelector('p').textContent.toLowerCase();
+    item.style.display = text.includes(query) ? 'block' : 'none';
+  });
+});
+</script>
+
 </body>
 </html>
