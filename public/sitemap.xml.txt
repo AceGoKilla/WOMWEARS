@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://your-netlify-site.netlify.app/</loc>
+    <loc>https://womwears.netlify.app/</loc>
     <lastmod>2025-04-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -9,11 +9,19 @@
   {% for category in products.keys() %}
     {% if products[category] %}
       <url>
-        <loc>https://your-netlify-site.netlify.app/#{{ category }}</loc>
+        <loc>https://womwears.netlify.app/#{{ category }}</loc>
         <lastmod>2025-04-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
       </url>
+      {% for product in products[category] %}
+        <url>
+          <loc>https://womwears.netlify.app/#{{ category }}-{{ loop.index }}</loc>
+          <lastmod>2025-04-27</lastmod>
+          <changefreq>weekly</changefreq>
+          <priority>0.6</priority>
+        </url>
+      {% endfor %}
     {% endif %}
   {% endfor %}
 </urlset>
