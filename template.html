@@ -85,22 +85,23 @@
 <!-- Вкладки -->
 <div class="tabs">
   {% for category in products.keys() %}
-    {% if products[category] %} <!-- Показываем вкладку только если категория не пустая -->
+    {% if products[category] %}
       <button class="tab-button" data-tab="{{ category }}">{{ category }}</button>
     {% endif %}
   {% endfor %}
 </div>
 
 <!-- Контент вкладок -->
+{% set global_index = 0 %}
 {% for category, items in products.items() %}
   {% if items %}
     <div class="tab-content" id="{{ category }}">
       <ul class="product-list">
         {% for product in items %}
-          <li data-product-index="{{ product | tojson | e }}">
+          <li data-product-index="{{ global_index }}">
             <div class="product-images">
               {% if product.images %}
-                <img src="{{ product.images[0] | e }}" alt="{{ product.title | e }}">
+                <img src="{{ product.images[0] | e }}" alt="{{ product.title | e }}" data-product-index="{{ global_index }}">
               {% else %}
                 <p>No image available</p>
               {% endif %}
@@ -109,6 +110,7 @@
             <p class="category">Category: {{ category | e }}</p>
             <a href="{{ product.link | e }}" target="_blank">Buy on Amazon</a>
           </li>
+          {% set global_index = global_index + 1 %}
         {% endfor %}
       </ul>
     </div>
@@ -123,7 +125,7 @@
   {% endif %}
 {% endfor %}
 {% if not products or not has_products %}
-  <p>No products available.</p>
+  <p>New products coming soon</p>
 {% endif %}
 
 <!-- Модальное окно -->
@@ -155,15 +157,20 @@ let modalSplideInstance = null;
 // Открытие модального окна при клике на изображение
 document.querySelectorAll('.product-images img').forEach(img => {
   img.addEventListener('click', function() {
-    const li = this.closest('li');
-    const productData = JSON.parse(li.getAttribute('data-product-index'));
-    const productIndex = products.findIndex(p => p.title === productData.title && p.category === productData.category);
+    const productIndex = parseInt(this.getAttribute('data-product-index'));
+    console.log('Product Index:', productIndex); // Отладка
+    console.log('Product Data:', products[productIndex]); // Отладка
     openModal(productIndex);
   });
 });
 
 // Логика модального окна
 function openModal(productIndex) {
+  if (!products[productIndex]) {
+    console.error('Product not found at index:', productIndex);
+    return;
+  }
+
   const modal = document.getElementById("modal");
   const modalSlides = document.getElementById("modalSlides");
 
