@@ -18,7 +18,7 @@
     .tab-button { 
       padding: 10px 20px; 
       margin: 5px; 
-      background: #f8bbd0; 
+      background: #fce4ec; /* Новый цвет: очень светлый розовый */
       color: #fff; 
       border: none; 
       border-radius: 20px; 
@@ -28,8 +28,8 @@
       text-transform: capitalize; 
       transition: background 0.3s; 
     }
-    .tab-button:hover { background: #f06292; }
-    .tab-button.active { background: #e91e63; }
+    .tab-button:hover { background: #f48fb1; } /* Новый цвет: нежный розовый */
+    .tab-button.active { background: #f06292; } /* Новый цвет: яркий, но мягкий розовый */
 
     /* Стили для товаров */
     .tab-content { display: none; }
@@ -40,6 +40,10 @@
     ul.product-list p { font-weight: 600; font-size: 16px; margin: 15px 0 10px; color: #c2185b; }
     ul.product-list a { color: #ec407a; text-decoration: none; }
     .category { font-size: 14px; color: #999; margin-top: 8px; font-weight: 600; }
+
+    /* Сортировка */
+    .sort-container { text-align: center; margin-bottom: 20px; }
+    #sortSelect { padding: 8px 16px; font-size: 16px; border-radius: 20px; border: 2px solid #f8bbd0; background: #fff; cursor: pointer; }
 
     /* Модальное окно */
     #modal { 
@@ -53,17 +57,52 @@
       justify-content: center; 
       align-items: center; 
       z-index: 9999; 
+      opacity: 0; /* Начальное состояние для анимации */
+      transition: opacity 0.3s ease; /* Анимация появления */
+    }
+    #modal.show { 
+      opacity: 1; /* Конечное состояние для анимации */
     }
     #modal .splide {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%) scale(0.9); /* Начальное масштабирование */
       width: 80%;
       max-width: 700px;
       max-height: 80vh;
+      transition: transform 0.3s ease; /* Анимация масштабирования */
+    }
+    #modal.show .splide {
+      transform: translate(-50%, -50%) scale(1); /* Конечное масштабирование */
     }
     #modal img { width: 100%; height: auto; border-radius: 10px; }
+
+    /* Кнопка "Back to Top" */
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #e91e63;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+    #backToTop.visible {
+      opacity: 1;
+    }
+    #backToTop:hover {
+      background: #f06292;
+    }
 
     /* Адаптивность */
     @media screen and (max-width: 600px) {
@@ -72,6 +111,7 @@
       ul.product-list img { height: 300px; }
       #modal .splide { width: 90%; max-height: 70vh; }
       .tab-button { font-size: 14px; padding: 8px 16px; }
+      #backToTop { width: 40px; height: 40px; bottom: 20px; right: 20px; }
     }
   </style>
 </head>
@@ -111,13 +151,22 @@
   
 </div>
 
+<!-- Сортировка -->
+<div class="sort-container">
+  <select id="sortSelect">
+    <option value="default">Sort by: Default</option>
+    <option value="title-asc">Sort by Title (A-Z)</option>
+    <option value="title-desc">Sort by Title (Z-A)</option>
+  </select>
+</div>
+
 <!-- Контент вкладок -->
 
   
     <div class="tab-content" id="dresses">
       <ul class="product-list">
         
-          <li data-images='["https://c.media-amazon.com/images/I/61+Mex6Ez9L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81IoIWiyb9L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81n7KbYPm-L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81gl2JUy0VL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81yavvUqzhL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/810g1sTduyL._AC_SY741_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/61+Mex6Ez9L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81IoIWiyb9L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81n7KbYPm-L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81gl2JUy0VL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81yavvUqzhL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/810g1sTduyL._AC_SY741_.jpg"]' data-title="ANRABESS Womens Summer Casual Maxi Dress V Neck Ruffle Sleeve Long Dresses Fashion Flowy Tiered Boho Beach Vacation Sundress">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/61+Mex6Ez9L._AC_SY741_.jpg" alt="ANRABESS Womens Summer Casual Maxi Dress V Neck Ruffle Sleeve Long Dresses Fashion Flowy Tiered Boho Beach Vacation Sundress">
@@ -128,7 +177,7 @@
             <a href="https://amzn.to/42PwZg3" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/7152ibJCFuL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71FPfIrCB2L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71XqyOgAJbL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71XhGJYRwYL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81lhDRcjFrL._AC_SY741_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/7152ibJCFuL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71FPfIrCB2L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71XqyOgAJbL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71XhGJYRwYL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81lhDRcjFrL._AC_SY741_.jpg"]' data-title="ANRILITA Maxi Dress for Women Wrap V Neck Short Sleeve Empire Pleated Waist Summer Casual Elegant Long Dresses with Pockets">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/7152ibJCFuL._AC_SY741_.jpg" alt="ANRILITA Maxi Dress for Women Wrap V Neck Short Sleeve Empire Pleated Waist Summer Casual Elegant Long Dresses with Pockets">
@@ -139,7 +188,7 @@
             <a href="https://amzn.to/4jwvlHa" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/81zQf8MpjKL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/818eyMFGnYL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81fEm3v3iYL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/813AcwckgCL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81TWk-acRiL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/61eiu2HcxhL._AC_SX569_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/81zQf8MpjKL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/818eyMFGnYL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81fEm3v3iYL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/813AcwckgCL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81TWk-acRiL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/61eiu2HcxhL._AC_SX569_.jpg"]' data-title="ZESICA Women&#39;s 2025 Summer Short Sleeve Maxi Dress Casual V Neck Hollow Out Eyelet Ruffle Swing A Line Long Dresses">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/81zQf8MpjKL._AC_SX569_.jpg" alt="ZESICA Women&#39;s 2025 Summer Short Sleeve Maxi Dress Casual V Neck Hollow Out Eyelet Ruffle Swing A Line Long Dresses">
@@ -150,7 +199,7 @@
             <a href="https://amzn.to/42JMXIq" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/81ye5uq2TeL._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/81qnESMH3yL._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/91XgM9nfzcL._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/81PXnSsJO8L._AC_SX679_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/81ye5uq2TeL._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/81qnESMH3yL._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/91XgM9nfzcL._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/81PXnSsJO8L._AC_SX679_.jpg"]' data-title="Womens Casual Tiered Swing Midi Dress Ruffle Sleeve V Neck A Line Loose Summer Dresses with Pockets">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/81ye5uq2TeL._AC_SX679_.jpg" alt="Womens Casual Tiered Swing Midi Dress Ruffle Sleeve V Neck A Line Loose Summer Dresses with Pockets">
@@ -161,7 +210,7 @@
             <a href="https://amzn.to/445HLRu" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/81cd55eSqbL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81fPmNtzKNL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/718+4seNS3L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71DDJxfgJXL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71OFokdZgIL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71VPrjPTXqL._AC_SY741_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/81cd55eSqbL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81fPmNtzKNL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/718+4seNS3L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71DDJxfgJXL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71OFokdZgIL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71VPrjPTXqL._AC_SY741_.jpg"]' data-title="Berydress Women&#39;s Casual Summer Tiered Midi Dress 2025 Short Sleeve V-Neck Loose Cotton Ruffle Babydoll Dress Boho Sundress">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/81cd55eSqbL._AC_SY741_.jpg" alt="Berydress Women&#39;s Casual Summer Tiered Midi Dress 2025 Short Sleeve V-Neck Loose Cotton Ruffle Babydoll Dress Boho Sundress">
@@ -172,7 +221,7 @@
             <a href="https://amzn.to/42sLKX5" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/71n-Z0QySTL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71u+2UNLpSL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71KEZMNGoiL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71tAJeaB+uL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71WzPuW7EWL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/712lc96AYPL._AC_SY741_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/71n-Z0QySTL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71u+2UNLpSL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71KEZMNGoiL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71tAJeaB+uL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71WzPuW7EWL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/712lc96AYPL._AC_SY741_.jpg"]' data-title="Berydress Women&#39;s Smocked Wrap Dress 2025 Square Neck Short Sleeve Sundress Summer Floral Ruffle Beach Mini Dresses">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/71n-Z0QySTL._AC_SY741_.jpg" alt="Berydress Women&#39;s Smocked Wrap Dress 2025 Square Neck Short Sleeve Sundress Summer Floral Ruffle Beach Mini Dresses">
@@ -183,7 +232,7 @@
             <a href="https://amzn.to/4cPuJde" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/719Ip8bwihL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/61d3a7ozP0L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/61C+a-7KUTL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71ROrVgTjSL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/61A4DR7FojL._AC_SY741_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/719Ip8bwihL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/61d3a7ozP0L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/61C+a-7KUTL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71ROrVgTjSL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/61A4DR7FojL._AC_SY741_.jpg"]' data-title="Womens Summer Dress- Square Neck Puff Sleeve Smocked Ruffle Hem A-line Mini Short Dresses">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/719Ip8bwihL._AC_SY741_.jpg" alt="Womens Summer Dress- Square Neck Puff Sleeve Smocked Ruffle Hem A-line Mini Short Dresses">
@@ -194,7 +243,7 @@
             <a href="https://amzn.to/3EFd4rV" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/71VQkKBT54L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81IsR+iro-L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71Z7pQR9SyL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71cfMdxfp5L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71Yh7HB+AIL._AC_SY741_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/71VQkKBT54L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81IsR+iro-L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71Z7pQR9SyL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71cfMdxfp5L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71Yh7HB+AIL._AC_SY741_.jpg"]' data-title="Women Puff Sleeve Square Neck Tie in Back Dresses with Zipper">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/71VQkKBT54L._AC_SY741_.jpg" alt="Women Puff Sleeve Square Neck Tie in Back Dresses with Zipper">
@@ -205,7 +254,7 @@
             <a href="https://amzn.to/3Ey8qvX" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/71nSZpmXtoL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71lreVhy70L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/61j2tHNGjpL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/61n7W5BUheL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/613xXxls3eL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71dUiGZo+IL._AC_SY741_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/71nSZpmXtoL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71lreVhy70L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/61j2tHNGjpL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/61n7W5BUheL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/613xXxls3eL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71dUiGZo+IL._AC_SY741_.jpg"]' data-title="ANRABESS Women&#39;s Summer Casual Sleeveless Square Neck Dress 2025 Smocked Ruffle Backless Boho Beach Cute Teen Short Sundress">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/71nSZpmXtoL._AC_SY741_.jpg" alt="ANRABESS Women&#39;s Summer Casual Sleeveless Square Neck Dress 2025 Smocked Ruffle Backless Boho Beach Cute Teen Short Sundress">
@@ -224,7 +273,7 @@
     <div class="tab-content" id="tops">
       <ul class="product-list">
         
-          <li data-images='["https://c.media-amazon.com/images/I/91jzyXNGZmL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81eJm6LRmvL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81ZafvGSv2L._AC_SX569_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/91jzyXNGZmL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81eJm6LRmvL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81ZafvGSv2L._AC_SX569_.jpg"]' data-title="U.Vomade Women&#39;s 3/4 Sleeve Plus Size Tops Collared V Neck Casual Comfy Work Blouses L-4X">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/91jzyXNGZmL._AC_SX569_.jpg" alt="U.Vomade Women&#39;s 3/4 Sleeve Plus Size Tops Collared V Neck Casual Comfy Work Blouses L-4X">
@@ -235,7 +284,7 @@
             <a href="https://amzn.to/4lRzHdI" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/81Rlk63IcNL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71BD4VRL5TL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81zvSMdphOL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71lADb+M9sL._AC_SY741_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/81Rlk63IcNL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71BD4VRL5TL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81zvSMdphOL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71lADb+M9sL._AC_SY741_.jpg"]' data-title="Zeagoo Womens 3/4 Length Sleeve Tunic Tops Casual V Neck Shirts Basic Tees Business Work Blouses Summer Fall 2025 Clothes">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/81Rlk63IcNL._AC_SY741_.jpg" alt="Zeagoo Womens 3/4 Length Sleeve Tunic Tops Casual V Neck Shirts Basic Tees Business Work Blouses Summer Fall 2025 Clothes">
@@ -246,7 +295,7 @@
             <a href="https://amzn.to/4itJAer" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/81R0I3wZd2L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81bVJdlKxZL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81xkAE38e5L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81sN-NTLtOL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/718dT-rwq9L._AC_SX569_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/81R0I3wZd2L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81bVJdlKxZL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81xkAE38e5L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81sN-NTLtOL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/718dT-rwq9L._AC_SX569_.jpg"]' data-title="LUYAA 3/4 Length Sleeve Womens Tops V Neck Tunic Tops Dressy Casual Pleated Shirts Fashion Tops for Women Trendy">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/81R0I3wZd2L._AC_SX569_.jpg" alt="LUYAA 3/4 Length Sleeve Womens Tops V Neck Tunic Tops Dressy Casual Pleated Shirts Fashion Tops for Women Trendy">
@@ -257,7 +306,7 @@
             <a href="https://amzn.to/4cN14kH" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/91Xg7vutGVL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81dSzXK2d5L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81Q2-mmflcL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/91VVBUYJkOL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/91dTlwoW2AL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/71E73TgI79L._AC_SX569_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/91Xg7vutGVL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81dSzXK2d5L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81Q2-mmflcL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/91VVBUYJkOL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/91dTlwoW2AL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/71E73TgI79L._AC_SX569_.jpg"]' data-title="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/91Xg7vutGVL._AC_SX569_.jpg" alt="3/4 Length Sleeve Womens Tops Summer Ruffle Sleeve Blouses V-Neck Lace T-Shirts Dressy Casual">
@@ -268,7 +317,7 @@
             <a href="https://amzn.to/42LLrp6" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/81R-sszi8sL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81qkIof+ipL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81X44PnelTL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81YjZrzt87L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81o1zvjOyGL._AC_SX569_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/81R-sszi8sL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81qkIof+ipL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81X44PnelTL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81YjZrzt87L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81o1zvjOyGL._AC_SX569_.jpg"]' data-title="Romanstii 3/4 Length Sleeve Womens Tops Keyhole Crewneck Shirts Business Dressy Casual Tunic Blouses Summer Basic Tees">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/81R-sszi8sL._AC_SX569_.jpg" alt="Romanstii 3/4 Length Sleeve Womens Tops Keyhole Crewneck Shirts Business Dressy Casual Tunic Blouses Summer Basic Tees">
@@ -279,7 +328,7 @@
             <a href="https://amzn.to/3EEmROW" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://m.media-amazon.com/images/I/61-+Zumb32L._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/61hpDVpiIHL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/61UUVoda4zL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/71IggeiOJgL._AC_SX679_.jpg"]'>
+          <li data-images='["https://m.media-amazon.com/images/I/61-+Zumb32L._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/61hpDVpiIHL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/61UUVoda4zL._AC_SX679_.jpg", "https://m.media-amazon.com/images/I/71IggeiOJgL._AC_SX679_.jpg"]' data-title="Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women&#39;s Short Sleeve T Shirt">
             <div class="product-images">
               
                 <img src="https://m.media-amazon.com/images/I/61-+Zumb32L._AC_SX679_.jpg" alt="Cotton Linen Shirts for Women Summer Casual Crewneck Pullover Tops Comfy Loose Women&#39;s Short Sleeve T Shirt">
@@ -290,7 +339,7 @@
             <a href="https://amzn.to/3GmQmpe" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://m.media-amazon.com/images/I/81-5Hc2tHrL._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/81TkrfVWswL._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/71cmAYf53qL._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/81hfDLWl56L._AC_SY741_.jpg"]'>
+          <li data-images='["https://m.media-amazon.com/images/I/81-5Hc2tHrL._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/81TkrfVWswL._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/71cmAYf53qL._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/81hfDLWl56L._AC_SY741_.jpg"]' data-title="ROSELINLIN Women&#39;s Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings">
             <div class="product-images">
               
                 <img src="https://m.media-amazon.com/images/I/81-5Hc2tHrL._AC_SY741_.jpg" alt="ROSELINLIN Women&#39;s Short Sleeve Shirts Floral Summer Tops Loose Fit for Leggings">
@@ -301,7 +350,7 @@
             <a href="https://amzn.to/3RYc7hk" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://m.media-amazon.com/images/I/81oT3AT-4IL._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/81TzofTCOPL._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/71q9OxMIZ-L._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/81P3JZfhKrL._AC_SY741_.jpg"]'>
+          <li data-images='["https://m.media-amazon.com/images/I/81oT3AT-4IL._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/81TzofTCOPL._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/71q9OxMIZ-L._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/81P3JZfhKrL._AC_SY741_.jpg"]' data-title="ROSELINLIN Womens Long Sleeve Tunic Tops Floral Fall Blouse Shirts">
             <div class="product-images">
               
                 <img src="https://m.media-amazon.com/images/I/81oT3AT-4IL._AC_SY741_.jpg" alt="ROSELINLIN Womens Long Sleeve Tunic Tops Floral Fall Blouse Shirts">
@@ -312,7 +361,7 @@
             <a href="https://amzn.to/4lHaFO4" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://m.media-amazon.com/images/I/91v0HJqUuwL._AC_SY500_.jpg", "https://m.media-amazon.com/images/I/81LnBnbTEKL._AC_SY500_.jpg", "https://m.media-amazon.com/images/I/81ZxlSy9D0L._AC_SY500_.jpg", "https://m.media-amazon.com/images/I/81c2omwFewL._AC_SY500_.jpg", "https://m.media-amazon.com/images/I/81WRGAoE4EL._AC_SY500_.jpg"]'>
+          <li data-images='["https://m.media-amazon.com/images/I/91v0HJqUuwL._AC_SY500_.jpg", "https://m.media-amazon.com/images/I/81LnBnbTEKL._AC_SY500_.jpg", "https://m.media-amazon.com/images/I/81ZxlSy9D0L._AC_SY500_.jpg", "https://m.media-amazon.com/images/I/81c2omwFewL._AC_SY500_.jpg", "https://m.media-amazon.com/images/I/81WRGAoE4EL._AC_SY500_.jpg"]' data-title="AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses">
             <div class="product-images">
               
                 <img src="https://m.media-amazon.com/images/I/91v0HJqUuwL._AC_SY500_.jpg" alt="AKEWEI Womens Summer Tops V Neck T Shirts Pleated Clothes Spring Fashion Blouses">
@@ -323,7 +372,7 @@
             <a href="https://amzn.to/42I0eRQ" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/61WfO5R3KSL._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/61EoFrfY0DL._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/6168hRK6v7L._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/61s6nOLYE5L._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/61pMv8hR8qL._AC_SX679_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/61WfO5R3KSL._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/61EoFrfY0DL._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/6168hRK6v7L._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/61s6nOLYE5L._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/61pMv8hR8qL._AC_SX679_.jpg"]' data-title="Boho Floral Linen Shirt for Women V Neck Long Sleeve Blouse Vintage Printed Casual Loose Fit Fall Tunic Tops">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/61WfO5R3KSL._AC_SX679_.jpg" alt="Boho Floral Linen Shirt for Women V Neck Long Sleeve Blouse Vintage Printed Casual Loose Fit Fall Tunic Tops">
@@ -334,7 +383,7 @@
             <a href="https://amzn.to/4jEmumm" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/71jYPxijUeL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81lpzQIMUwL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/71Kieqj8xbL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81QJ-ljc0nL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81s7mLfSU3L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81stOwh8EkL._AC_SX569_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/71jYPxijUeL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81lpzQIMUwL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/71Kieqj8xbL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81QJ-ljc0nL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81s7mLfSU3L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81stOwh8EkL._AC_SX569_.jpg"]' data-title="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/71jYPxijUeL._AC_SX569_.jpg" alt="Blooming Jelly Womens Dressy Casual Blouses 3/4 Sleeve V Neck Ruffle Tops Business Ladies Summer 2025 Trendy Work Shirt">
@@ -345,7 +394,7 @@
             <a href="https://amzn.to/3EATCMY" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/71Ob+Zkc11L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/717yNbjTLeL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/71NJ97FY40L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/7142JKtyixL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/712Fn3N6IJL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/71FCv0dfqAL._AC_SX569_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/71Ob+Zkc11L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/717yNbjTLeL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/71NJ97FY40L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/7142JKtyixL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/712Fn3N6IJL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/71FCv0dfqAL._AC_SX569_.jpg"]' data-title="Bebonnie Women&#39;s Button Down Shirts Short Sleeve Dress Shirts Collared Work Office Blouses">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/71Ob+Zkc11L._AC_SX569_.jpg" alt="Bebonnie Women&#39;s Button Down Shirts Short Sleeve Dress Shirts Collared Work Office Blouses">
@@ -356,7 +405,7 @@
             <a href="https://amzn.to/4jNXWYo" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/71TtkME3P4L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71BtzcxyiBL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71VwjorxUSL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71DOIJ3KHEL._AC_SY741_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/71TtkME3P4L._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71BtzcxyiBL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71VwjorxUSL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/71DOIJ3KHEL._AC_SY741_.jpg"]' data-title="Womens Summer Tops Crewneck Short Sleeve Shirts Casual Chiffon Blouses Flowy Lace Hem Boho Clothing Trendy 2025">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/71TtkME3P4L._AC_SY741_.jpg" alt="Womens Summer Tops Crewneck Short Sleeve Shirts Casual Chiffon Blouses Flowy Lace Hem Boho Clothing Trendy 2025">
@@ -367,7 +416,7 @@
             <a href="https://amzn.to/442I3IV" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/91GpFxgIUeL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81ap67x5VTL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81iQgRkaC+L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/811S9LmmUFL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/815KH7qGw7L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/91ew9qutSaL._AC_SX569_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/91GpFxgIUeL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81ap67x5VTL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81iQgRkaC+L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/811S9LmmUFL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/815KH7qGw7L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/91ew9qutSaL._AC_SX569_.jpg"]' data-title="LOMON Women&#39;s 2025 Fashion Tops 3/4 Length Sleeve Business Casual Blouses Summer Tees Shirts">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/91GpFxgIUeL._AC_SX569_.jpg" alt="LOMON Women&#39;s 2025 Fashion Tops 3/4 Length Sleeve Business Casual Blouses Summer Tees Shirts">
@@ -378,7 +427,7 @@
             <a href="https://amzn.to/4iw84nt" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/81EPDo0f4fL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81vzOaTwOvL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81OyM9xzRbL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81Io2xJZUPL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81ERnTEMEGL._AC_SX569_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/81EPDo0f4fL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81vzOaTwOvL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81OyM9xzRbL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81Io2xJZUPL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81ERnTEMEGL._AC_SX569_.jpg"]' data-title="Lotusmile Summer Chiffon Dressy Casual Blouses Elegant Ruffle Short Sleeve Work Tops for Women Trendy">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/81EPDo0f4fL._AC_SX569_.jpg" alt="Lotusmile Summer Chiffon Dressy Casual Blouses Elegant Ruffle Short Sleeve Work Tops for Women Trendy">
@@ -389,7 +438,7 @@
             <a href="https://amzn.to/4jFIcq0" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/8191tlSoooL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81lkl+hb07L._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/813HnW3sORL._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/819g27sdasL._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/81q7f6TKbHL._AC_SX679_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/8191tlSoooL._AC_SY741_.jpg", "https://c.media-amazon.com/images/I/81lkl+hb07L._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/813HnW3sORL._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/819g27sdasL._AC_SX679_.jpg", "https://c.media-amazon.com/images/I/81q7f6TKbHL._AC_SX679_.jpg"]' data-title="Blingfit 3/4 Length Sleeve Shirts for Womens Pleated Summer Tops 2025 Ruffle Bell Sleeve Fasion Trendy Spring Blouses">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/8191tlSoooL._AC_SY741_.jpg" alt="Blingfit 3/4 Length Sleeve Shirts for Womens Pleated Summer Tops 2025 Ruffle Bell Sleeve Fasion Trendy Spring Blouses">
@@ -400,7 +449,7 @@
             <a href="https://amzn.to/4jNdY4E" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/81KEuAzxzRL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81Wem+TtO5L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81IBiu6s2yL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81z8ob0mAWL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81rDHCPs+BL._AC_SX569_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/81KEuAzxzRL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81Wem+TtO5L._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81IBiu6s2yL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81z8ob0mAWL._AC_SX569_.jpg", "https://c.media-amazon.com/images/I/81rDHCPs+BL._AC_SX569_.jpg"]' data-title="KTILG Women&#39;s V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/81KEuAzxzRL._AC_SX569_.jpg" alt="KTILG Women&#39;s V Neck T Shirts 3/4 Sleeve Blouse Summer Tops Dressy Casual Solid Basic Tees">
@@ -419,7 +468,7 @@
     <div class="tab-content" id="cardigans">
       <ul class="product-list">
         
-          <li data-images='["https://m.media-amazon.com/images/I/81lQd5FvH5L._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/81WG9m+pOSL._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/91cFin+u8zL._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/71XIVlXrpPL._AC_SY741_.jpg"]'>
+          <li data-images='["https://m.media-amazon.com/images/I/81lQd5FvH5L._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/81WG9m+pOSL._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/91cFin+u8zL._AC_SY741_.jpg", "https://m.media-amazon.com/images/I/71XIVlXrpPL._AC_SY741_.jpg"]' data-title="Arach&amp;Cloz Womens Cropped Cardigan Lightweight 2025 Long Sleeve Bolero Shrug Knit Sweater Tops Cozy Clouds">
             <div class="product-images">
               
                 <img src="https://m.media-amazon.com/images/I/81lQd5FvH5L._AC_SY741_.jpg" alt="Arach&amp;Cloz Womens Cropped Cardigan Lightweight 2025 Long Sleeve Bolero Shrug Knit Sweater Tops Cozy Clouds">
@@ -446,7 +495,18 @@
     <div class="tab-content" id="shoes">
       <ul class="product-list">
         
-          <li data-images='["https://c.media-amazon.com/images/I/71Ini2O7ubS._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/81UH1clUjNS._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/71iIylnNHHS._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/61dytS30BIS._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/71Pt5JEZpdS._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/71ztpnY2etS._AC_SY625_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/61y+jVQY3QL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/51uFIxdoh3L._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/51quR6VItKL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/51QLBZWLxpL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/61vA0IX4HCL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/518eJlZcDDL._AC_SY625_.jpg"]' data-title="DREAM PAIRS Women&#39;s Low Heel Pump Shoes">
+            <div class="product-images">
+              
+                <img src="https://c.media-amazon.com/images/I/61y+jVQY3QL._AC_SY625_.jpg" alt="DREAM PAIRS Women&#39;s Low Heel Pump Shoes">
+              
+            </div>
+            <p>DREAM PAIRS Women&#39;s Low Heel Pump Shoes</p>
+            <p class="category">Category: shoes</p>
+            <a href="https://amzn.to/3Yh8iYl" target="_blank">Buy on Amazon</a>
+          </li>
+        
+          <li data-images='["https://c.media-amazon.com/images/I/71Ini2O7ubS._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/81UH1clUjNS._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/71iIylnNHHS._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/61dytS30BIS._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/71Pt5JEZpdS._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/71ztpnY2etS._AC_SY625_.jpg"]' data-title="IDIFU Women&#39;s IN2 Pedazo Dress Shoes Low Block Heels Comfortable Chunky Closed Toe Ankle Strap Wedding Pumps">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/71Ini2O7ubS._AC_SY625_.jpg" alt="IDIFU Women&#39;s IN2 Pedazo Dress Shoes Low Block Heels Comfortable Chunky Closed Toe Ankle Strap Wedding Pumps">
@@ -457,7 +517,7 @@
             <a href="https://amzn.to/4lKOIOp" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/61ViDpONcuL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/61FURm8t5YL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/61HeQd1o7iL._AC_SY500_.jpg", "https://c.media-amazon.com/images/I/614kNfu7MSL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/61RD-fQYHfL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/617UKZWqKGL._AC_SY625_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/61ViDpONcuL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/61FURm8t5YL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/61HeQd1o7iL._AC_SY500_.jpg", "https://c.media-amazon.com/images/I/614kNfu7MSL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/61RD-fQYHfL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/617UKZWqKGL._AC_SY625_.jpg"]' data-title="DREAM PAIRS Women&#39;s Closed Pointed Toe Low Chunky Heels Pumps Ankle Strap Wedding Business Dressy Shoes">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/61ViDpONcuL._AC_SY625_.jpg" alt="DREAM PAIRS Women&#39;s Closed Pointed Toe Low Chunky Heels Pumps Ankle Strap Wedding Business Dressy Shoes">
@@ -468,7 +528,7 @@
             <a href="https://amzn.to/3REwPmq" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/61wVjWL8eZL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/61iN5c90HxL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/71XkH5MBivL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/71LyDHWCCrL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/71vk5Mpd37L._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/61wVjWL8eZL._AC_SY625_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/61wVjWL8eZL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/61iN5c90HxL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/71XkH5MBivL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/71LyDHWCCrL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/71vk5Mpd37L._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/61wVjWL8eZL._AC_SY625_.jpg"]' data-title="Trary Women&#39;s Flats, Black Flats for Women, Wide Width Dress Shoes for Women, Womens Flats, Pointed Toe Flats Ballet Flats for Women, Flats Shoes Women Dressy, Ankle Strap Flats,Closed Toe Flats,Flats">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/61wVjWL8eZL._AC_SY625_.jpg" alt="Trary Women&#39;s Flats, Black Flats for Women, Wide Width Dress Shoes for Women, Womens Flats, Pointed Toe Flats Ballet Flats for Women, Flats Shoes Women Dressy, Ankle Strap Flats,Closed Toe Flats,Flats">
@@ -479,7 +539,7 @@
             <a href="https://amzn.to/44ewyOI" target="_blank">Buy on Amazon</a>
           </li>
         
-          <li data-images='["https://c.media-amazon.com/images/I/71E78GG4LBL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/519tSmkBrsL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/61k4bev2pbL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/71a7XgighCL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/71-zb0gLo9L._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/71upi6Mh1TL._AC_SY625_.jpg"]'>
+          <li data-images='["https://c.media-amazon.com/images/I/71E78GG4LBL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/519tSmkBrsL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/61k4bev2pbL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/71a7XgighCL._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/71-zb0gLo9L._AC_SY625_.jpg", "https://c.media-amazon.com/images/I/71upi6Mh1TL._AC_SY625_.jpg"]' data-title="Frank Mully Women’s Ballet Flat Shoes Knit Dress Shoes Round Toe Slip On Ballerina Walking Flats Shoes for Woman Low Wedge Comfort Soft">
             <div class="product-images">
               
                 <img src="https://c.media-amazon.com/images/I/71E78GG4LBL._AC_SY625_.jpg" alt="Frank Mully Women’s Ballet Flat Shoes Knit Dress Shoes Round Toe Slip On Ballerina Walking Flats Shoes for Woman Low Wedge Comfort Soft">
@@ -535,6 +595,13 @@
   </div>
 </div>
 
+<!-- Кнопка "Back to Top" -->
+<button id="backToTop" title="Back to Top">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 19V5M5 12l7-7 7 7"></path>
+  </svg>
+</button>
+
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/js/splide.min.js"></script>
 <script>
 let modalSplideInstance = null;
@@ -542,7 +609,7 @@ let modalSplideInstance = null;
 // Открытие модального окна при клике на изображение
 document.querySelectorAll('.product-images img').forEach(img => {
   img.addEventListener('click', function(event) {
-    event.stopPropagation(); // Предотвращаем всплытие события
+    event.stopPropagation();
     const li = this.closest('li');
     if (!li) {
       console.error('Не удалось найти элемент <li>');
@@ -563,14 +630,14 @@ document.querySelectorAll('.product-images img').forEach(img => {
       return;
     }
 
-    console.log('Images for modal:', images); // Отладка
+    console.log('Images for modal:', images);
     openModal(images);
   });
 });
 
 // Логика модального окна
 function openModal(images) {
-  console.log('Открываем модальное окно с изображениями:', images); // Отладка
+  console.log('Открываем модальное окно с изображениями:', images);
   const modal = document.getElementById("modal");
   const modalSlides = document.getElementById("modalSlides");
 
@@ -592,7 +659,7 @@ function openModal(images) {
       li.className = 'splide__slide';
       const img = document.createElement('img');
       img.src = imgSrc;
-      img.onerror = () => console.error('Ошибка загрузки изображения:', imgSrc); // Отладка
+      img.onerror = () => console.error('Ошибка загрузки изображения:', imgSrc);
       li.appendChild(img);
       modalSlides.appendChild(li);
     });
@@ -618,16 +685,21 @@ function openModal(images) {
   }
 
   modal.style.display = "flex";
+  modal.classList.add('show'); // Запускаем анимацию
 }
 
 function closeModal(event) {
   if (event.target.id === "modal") {
-    console.log('Закрываем модальное окно'); // Отладка
-    document.getElementById("modal").style.display = "none";
-    if (modalSplideInstance) {
-      modalSplideInstance.destroy();
-      modalSplideInstance = null;
-    }
+    console.log('Закрываем модальное окно');
+    const modal = document.getElementById("modal");
+    modal.classList.remove('show');
+    setTimeout(() => {
+      modal.style.display = "none";
+      if (modalSplideInstance) {
+        modalSplideInstance.destroy();
+        modalSplideInstance = null;
+      }
+    }, 300); // Соответствует длительности анимации
   }
 }
 
@@ -644,18 +716,17 @@ document.querySelectorAll('.tab-button').forEach(button => {
     this.classList.add('active');
     document.getElementById(tabName).classList.add('active');
 
-    // Сбрасываем поиск
+    // Сбрасываем поиск и сортировку
     document.getElementById('searchInput').value = '';
-    document.querySelectorAll('.product-list li').forEach(item => {
-      item.style.display = 'block';
-    });
+    document.getElementById('sortSelect').value = 'default';
+    const activeTab = document.querySelector('.tab-content.active');
+    if (activeTab) {
+      const items = activeTab.querySelectorAll('.product-list li');
+      items.forEach(item => item.style.display = 'block');
+      sortProducts('default'); // Восстанавливаем порядок по умолчанию
+    }
   });
 });
-
-// Показываем первую вкладку по умолчанию
-if (document.querySelector('.tab-button')) {
-  document.querySelector('.tab-button').click();
-}
 
 // Поиск
 document.getElementById('searchInput').addEventListener('input', function() {
@@ -668,6 +739,48 @@ document.getElementById('searchInput').addEventListener('input', function() {
     const text = item.querySelector('p').textContent.toLowerCase();
     item.style.display = text.includes(query) ? 'block' : 'none';
   });
+});
+
+// Сортировка
+function sortProducts(sortType) {
+  const activeTab = document.querySelector('.tab-content.active');
+  if (!activeTab) return;
+
+  const productList = activeTab.querySelector('.product-list');
+  const items = Array.from(productList.querySelectorAll('li'));
+
+  if (sortType === 'title-asc') {
+    items.sort((a, b) => a.getAttribute('data-title').localeCompare(b.getAttribute('data-title')));
+  } else if (sortType === 'title-desc') {
+    items.sort((a, b) => b.getAttribute('data-title').localeCompare(a.getAttribute('data-title')));
+  }
+
+  // Перестраиваем список
+  productList.innerHTML = '';
+  items.forEach(item => productList.appendChild(item));
+}
+
+document.getElementById('sortSelect').addEventListener('change', function() {
+  sortProducts(this.value);
+});
+
+// Показываем первую вкладку по умолчанию
+if (document.querySelector('.tab-button')) {
+  document.querySelector('.tab-button').click();
+}
+
+// Кнопка "Back to Top"
+const backToTopButton = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    backToTopButton.classList.add('visible');
+  } else {
+    backToTopButton.classList.remove('visible');
+  }
+});
+
+backToTopButton.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 </script>
 
