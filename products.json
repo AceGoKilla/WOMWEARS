@@ -335,6 +335,20 @@
     "accessories": [],
     "shoes": [
         {
+            "title": "Naturalizer Women's Flexy Round Toe Ballet Flat",
+            "images": [
+                "https://c.media-amazon.com/images/I/81d6SzhGsGL._AC_SX625_.jpg",
+                "https://c.media-amazon.com/images/I/51hTLDOagtL._AC_SY625_.jpg",
+                "https://c.media-amazon.com/images/I/51GotGTzfQL._AC_SY625_.jpg",
+                "https://c.media-amazon.com/images/I/51X+gGlHotL._AC_SY625_.jpg",
+                "https://c.media-amazon.com/images/I/51i1qRXkfWL._AC_SY625_.jpg",
+                "https://c.media-amazon.com/images/I/41bA93NE2nL._AC_SY625_.jpg"
+            ],
+            "link": "https://amzn.to/3ENMgpq",
+            "category": "shoes",
+            "designer_note": "Classic, everyday women's ballet flat with a soft, padded collar for all day comfort"
+        },
+        {
             "title": "Hash Bubbie Women's Flats Shoes Ballet Flats Dress Shoes Comfortable PU Leather Slip on Shoes for Women",
             "images": [
                 "https://c.media-amazon.com/images/I/7156F1HU8aL._AC_SY625_.jpg",
